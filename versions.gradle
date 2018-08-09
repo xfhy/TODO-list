@@ -1,0 +1,20 @@
+ext.kotlin_version = '1.2.30'
+ext.compileSdkVersion = 27
+ext.applicationId = "com.xfhy.todo"
+ext.minSdkVersion = 19
+ext.targetSdkVersion = 27
+ext.versionCode = 1
+ext.versionName = "1.0"
+
+ext.versionsSupport = "27.1.1"
+
+ext.versionsRxjava = "2.1.8"
+ext.versionsRxAndroid = "2.0.1"
+ext.versionsRetrofit = "2.4.0"
+ext.versionsGson = "2.8.2"
+ext.versionConstraintLayout = "1.1.2"
+
+ext.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+ext.app_compat = "com.android.support:appcompat-v7:$versionsSupport"
+ext.design = "com.android.support:design:$versionsSupport"
+ext.constraint_layout = "com.android.support.constraint:constraint-layout:$versionConstraintLayout"
