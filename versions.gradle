@@ -1,5 +1,6 @@
 ext.kotlin_version = '1.2.30'
 ext.compileSdkVersion = 27
+ext.buildToolsVersion = '27.0.3'
 ext.applicationId = "com.xfhy.todo"
 ext.minSdkVersion = 19
 ext.targetSdkVersion = 27
@@ -8,13 +9,35 @@ ext.versionName = "1.0"
 
 ext.versionsSupport = "27.1.1"
 
-ext.versionsRxjava = "2.1.8"
-ext.versionsRxAndroid = "2.0.1"
+ext.versionsRxKotlin = "2.2.0"
+ext.versionsRxAndroid = "2.0.2"
 ext.versionsRetrofit = "2.4.0"
-ext.versionsGson = "2.8.2"
 ext.versionConstraintLayout = "1.1.2"
+ext.anko_version="0.10.5"
+ext.gson_version = "2.8.5"
+ext.okhttp_version = "3.11.0"
+ext.rx_lifecycle_version = "2.2.2"
+ext.logger_version = "2.2.0"
+ext.rxpermissions_version = "0.9.5@aar"
+ext.multidex_version = "1.0.3"
 
 ext.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 ext.app_compat = "com.android.support:appcompat-v7:$versionsSupport"
 ext.design = "com.android.support:design:$versionsSupport"
 ext.constraint_layout = "com.android.support.constraint:constraint-layout:$versionConstraintLayout"
+ext.anko = "org.jetbrains.anko:anko:$anko_version"
+ext.gson = "com.google.code.gson:gson:$gson_version"
+ext.okhttp = "com.squareup.okhttp3:okhttp:$okhttp_version"
+ext.okhttp_logging = "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+ext.retrofit = "com.squareup.retrofit2:retrofit:$versionsRetrofit"
+ext.retrofit_converter_gson = "com.squareup.retrofit2:converter-gson:$versionsRetrofit"
+ext.retrofit_adapter = "com.squareup.retrofit2:adapter-rxjava2:$versionsRetrofit"
+ext.rxlifecycle_kotlin = "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rx_lifecycle_version"
+ext.rxlifecycle_components = "com.trello.rxlifecycle2:rxlifecycle-components:$rx_lifecycle_version"
+ext.logger = "com.orhanobut:logger:$logger_version"
+ext.rxpermissions = "com.tbruyelle.rxpermissions2:rxpermissions:$rxpermissions_version"
+ext.cardview = "com.android.support:cardview-v7:$versionsSupport"
+ext.recyclerview = "com.android.support:recyclerview-v7:$versionsSupport"
+ext.multidex = "com.android.support:multidex:$multidex_version"
+ext.rxkotlin = "io.reactivex.rxjava2:rxkotlin:$versionsRxKotlin"
+ext.rxandroid = "io.reactivex.rxjava2:rxandroid:$versionsRxAndroid"
