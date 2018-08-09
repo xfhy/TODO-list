@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#39C5BB</color>
+    <color name="colorPrimary">#03a9f4</color>
+    <color name="colorPrimaryDark">#03a9f4</color>
+
+    <!--字体颜色-->
+    <color name="color_1e1e1e">#1e1e1e</color>
+    <color name="color_661e1e1e">#BB1e1e1e</color>
+    <color name="color_424542">#424542</color>
+    <color name="color_8C8A8C">#8C8A8C</color>
+
+
+    <color name="common_bg">#f5f5f5</color>
+    <color name="common_black">#000000</color>
+    <color name="common_blue">#03a9f4</color>
+    <color name="common_blue_dark">#0288d1</color>
+    <color name="common_blue_light">#039be5</color>
+    <color name="common_disable">#BBBBBB</color>
+    <color name="common_divider">#d4d4d4</color>
+    <color name="common_gray">#dddddd</color>
+    <color name="common_purple">#d500f9</color>
+    <color name="common_red">#f11919</color>
+    <color name="common_white">#ffffff</color>
+    <color name="common_yellow">#fe9c2f</color>
+
+    <color name="text_dark">#999999</color>
+    <color name="text_light_dark">#333333</color>
+    <color name="text_normal">#666666</color>
+    <color name="transparent">#00000000</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_bfbfbf">#BFBFBF</color>
+    <color name="stfImageColor">@color/colorPrimary</color>
+
+    <!--fragment背景-->
+    <color name="fragment_background">#EEEEEE</color>
+    <color name="color_translucent_white">#88FFFFFF</color>
+
+    <!--空布局 灰色-->
+    <color name="gray_cdcdcd">#CDCDCD</color>
+    <color name="gray_bfbfbf">#BFBFBF</color>
+
+    <!--Snackbar 颜色-->
+    <color name="snackbar_blue">#2195f3</color>
+    <color name="snackbar_green">#4caf50</color>
+    <color name="snackbar_origin">#ffc107</color>
+    <color name="snackbar_red">#f44336</color>
+
+    <!--分割线灰色-->
+    <color name="color_dadada">#dadada</color>
+    <!--灰色字体-->
+    <color name="color_949494">#949494</color>
+    <color name="color_header">#6F6F6F</color>
+
+    <color name="comment_reply">#9ba4a3</color>
+</resources>

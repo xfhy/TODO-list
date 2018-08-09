@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--空布局  重试 按钮的shape-->
+
+    <!--圆角-->
+    <corners android:radius="@dimen/dimen_30"/>
+    <padding
+        android:left="@dimen/dimen_60"
+        android:right="@dimen/dimen_60"/>
+    <!--描边-->
+    <stroke
+        android:width="@dimen/dimen_1"
+        android:color="@color/gray_bfbfbf"/>
+    <!--填充-->
+    <solid android:color="@color/fragment_background"/>
+
+</shape>

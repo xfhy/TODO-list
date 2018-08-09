@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Library</string>
+
+    <string name="empty_view_retry">重试</string>
+    <string name="loading">正在加载中...</string>
+    <string name="load_failed">加载失败，请点我重试</string>
+    <string name="load_end">客官,没有更多数据了~</string>
+
+    <!--多样式布局-->
+    <string name="stfLayoutErrorMessage">糟糕！加载失败了ヽ(≧Д≦)ノ\n 请稍后重试...</string>
+    <string name="stfLayoutErrorMessageNormal">加载数据失败...</string>
+    <string name="stfLayoutOfflineMessage">网络不给力,请检查网络设置</string>
+    <string name="stfLayoutEmptyMessage">咦,没有数据可以显示....请尝试下拉刷新一下</string>
+    <string name="stfLayoutLoadingMessage">正在加载中...</string>
+    <string name="stfLayoutButtonRetry">重试</string>
+    <string name="stfLayoutButtonSetting">去设置</string>
+
+    <string name="data_loading_failed">数据加载失败ヽ(≧Д≦)ノ</string>
+    <string name="unknown_mistake">未知错误ヽ(≧Д≦)ノ</string>
 </resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_50"
+    android:background="@color/color_ffffff">
+
+    <!--通用评论View-->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_dadada"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/mCommentEt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/common_padding_small"
+            android:layout_marginEnd="@dimen/common_padding_small"
+            android:layout_marginStart="@dimen/common_padding"
+            android:layout_marginTop="@dimen/common_padding_small"
+            android:layout_weight="1"
+            android:background="@drawable/shape_comment_edittext"
+            android:hint="期待你的评论(140字以内)"
+            android:maxLength="140"
+            android:paddingStart="@dimen/common_padding"
+            android:textColor="@color/color_1e1e1e"
+            android:textColorHint="@color/color_949494"
+            android:textSize="@dimen/font_size_14"/>
+
+        <TextView
+            android:id="@+id/mSendTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/dimen_10"
+            android:text="发送"
+            android:textColor="@color/color_949494"
+            android:textSize="@dimen/font_size_16"/>
+
+    </LinearLayout>
+</FrameLayout>

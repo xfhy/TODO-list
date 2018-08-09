@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:id="@+id/mTitleBarLayout"
+             android:layout_width="match_parent"
+             android:layout_height="@dimen/common_header_bar_height"
+             android:background="@color/common_blue">
+
+    <!--通用的标题栏-->
+    <ImageView
+        android:id="@+id/mBackIv"
+        android:layout_width="@dimen/common_back_width"
+        android:layout_height="@dimen/common_back_height"
+        android:layout_gravity="start|center_vertical"
+        android:layout_marginStart="@dimen/common_margin_middle"
+        android:src="@drawable/icon_back"/>
+
+    <TextView
+        android:id="@+id/mTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/dimen_40"
+        android:layout_marginStart="@dimen/dimen_40"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/font_size_16"
+        tools:text="标题"/>
+
+    <TextView
+        android:id="@+id/mRightTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginEnd="@dimen/common_margin_middle"
+        android:padding="@dimen/common_padding_small"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/font_size_14"
+        tools:text="测试"/>
+
+</FrameLayout>
