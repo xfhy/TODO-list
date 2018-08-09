@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -28,6 +29,35 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //design
+    api rootProject.ext.design
+    //anko
+    api rootProject.ext.anko
+    //RxKotlin
+    api rootProject.ext.rxkotlin
+    api rootProject.ext.rxandroid
+    //gson
+    api rootProject.ext.gson
+    //Okhttp Retrofit
+    api rootProject.ext.okhttp
+    api rootProject.ext.retrofit
+    api rootProject.ext.okhttp_logging
+    api rootProject.ext.retrofit_converter_gson
+    api rootProject.ext.retrofit_adapter
+    //RxLifecycle
+    api rootProject.ext.rxlifecycle_kotlin
+    api rootProject.ext.rxlifecycle_components
+    //logger
+    api rootProject.ext.logger
+    //RxPermissions
+    api rootProject.ext.rxpermissions
+    //CardView
+    api rootProject.ext.cardview
+    //RecyclerView
+    api rootProject.ext.recyclerview
+    api rootProject.ext.multidex
+    // 多dex配置
 
     api rootProject.ext.app_compat
     api rootProject.ext.design
