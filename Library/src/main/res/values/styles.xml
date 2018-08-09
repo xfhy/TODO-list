@@ -35,12 +35,6 @@
         <item name="android:textSize">@dimen/font_size_16</item>
     </style>
 
-    <!--CollapsingToolbarLayout的主题-->
-    <style name="TextAppearance.ExpandTitle"
-           parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textSize">@dimen/font_size_26</item>
-    </style>
-
     <!-- TabLayout通用样式-->
     <style name="TabsStyle">
         <item name="android:layout_width">match_parent</item>
