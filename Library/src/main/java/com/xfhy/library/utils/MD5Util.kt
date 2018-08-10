@@ -31,7 +31,7 @@ object MD5Util {
                 val i = b and 0xff.toByte()   //将字节码转换成整数
                 var hexString = Integer.toHexString(Math.abs(i.toInt()))  //将整数转换成16进制数
                 if (hexString.length == 1) {   //如果是1位  则强行弄成2位
-                    hexString = "0" + hexString
+                    hexString = "0$hexString"
                 }
                 stringBuffer.append(hexString)   //拼接字符串
             }

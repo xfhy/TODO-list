@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.View
 import com.xfhy.library.basekit.fragment.BaseMvpFragment
 import com.xfhy.library.ext.enable
+import com.xfhy.library.utils.Base64Utils
+import com.xfhy.library.utils.SPUtils
 import com.xfhy.todo.R
+import com.xfhy.todo.common.Constant
 import com.xfhy.todo.presenter.LoginFragmentContract
 import com.xfhy.todo.presenter.impl.LoginFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -39,6 +42,9 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     private fun initView() {
         mLoginBtn.enable(mUserNameEt) { isLoginBtnEnable() }
         mLoginBtn.enable(mPwdEt) { isLoginBtnEnable() }
+
+        mUserNameEt.setText(SPUtils.getValue(Constant.USERNAME, ""))
+        mPwdEt.setText(String(Base64Utils.decode(SPUtils.getValue(Constant.PASSWORD, ""))))
 
         mLoginBtn.setOnClickListener(this)
         mNoAccountTv.setOnClickListener(this)
