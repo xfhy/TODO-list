@@ -58,15 +58,11 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.mLoginBtn -> {
-                startLogin()
+                mPresenter?.login(mUserNameEt.text.toString(), mPwdEt.text.toString())
             }
             R.id.mNoAccountTv -> {
             }
         }
-    }
-
-    private fun startLogin() {
-
     }
 
     override fun onFocusChange(v: View?, hasFocus: Boolean) {

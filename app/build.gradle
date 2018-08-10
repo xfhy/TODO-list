@@ -12,6 +12,8 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "WAN_BASE_URL", '"http://www.wanandroid.com/"'
     }
     buildTypes {
         release {
