@@ -51,6 +51,15 @@ abstract class BaseMvpFragment<T : RxPresenter> : BaseFragment(), BaseView {
         mPresenter?.onDestroy()
     }
 
+    override fun showContent() {
+    }
+
+    override fun showEmptyView() {
+    }
+
+    override fun showOffline() {
+    }
+
     /**
      * 初始化presenter
      */

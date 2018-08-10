@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--登录界面-->
+
+    <FrameLayout
+        android:id="@+id/login_bg_fl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_150">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/login_head_background"/>
+
+        <!--标识当前状态-->
+        <ImageView
+            android:id="@+id/mCurrentStateIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="-20dp"
+            android:src="@mipmap/login_state_input"/>
+
+    </FrameLayout>
+
+    <!--登录界面-->
+    <LinearLayout
+        android:id="@+id/user_input_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_bg_fl"
+        android:layout_margin="@dimen/common_margin"
+        android:background="@drawable/border_corner_all"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/mUserNameEt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:background="@null"
+            android:drawablePadding="@dimen/common_padding_small"
+            android:drawableStart="@mipmap/icon_user_name"
+            android:hint="请输入用户名"
+            android:maxLength="20"
+            android:paddingStart="@dimen/common_padding_small"
+            android:textColor="@color/color_1e1e1e"
+            android:textSize="@dimen/font_size_14"/>
+
+        <View style="@style/HorizontalDivider"/>
+
+        <EditText
+            android:id="@+id/mPwdEt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:background="@null"
+            android:drawableLeft="@mipmap/icon_pwd"
+            android:drawablePadding="@dimen/common_padding_small"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:paddingLeft="@dimen/common_padding_small"
+            android:textColor="@color/color_1e1e1e"
+            android:textSize="@dimen/font_size_14"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/mLoginBtn"
+        style="@style/HorizontalBtnStyle"
+        android:layout_below="@+id/user_input_data"
+        android:text="登录"/>
+
+    <TextView
+        android:id="@+id/mNoAccountTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mLoginBtn"
+        android:padding="@dimen/common_padding"
+        android:text="没有账号?去注册"
+        android:textColor="@color/common_blue"
+        android:textSize="@dimen/font_size_14"/>
+
+</RelativeLayout>

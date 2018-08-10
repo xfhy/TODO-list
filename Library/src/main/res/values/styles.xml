@@ -1,16 +1,5 @@
 <resources>
 
-    <!-- 主题样式 -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:textSize">@dimen/font_size_14</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/common_black</item>
-        <item name="colorPrimaryDark">@color/common_black</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
     <!-- 加载弹框样式 -->
     <style name="LightDialog" parent="@android:style/Theme.Dialog">
         <!--提示框是否有边框-->
