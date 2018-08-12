@@ -1,6 +1,7 @@
 package com.xfhy.todo.fragment
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import com.xfhy.library.basekit.fragment.BaseMvpFragment
 import com.xfhy.library.ext.enable
@@ -44,7 +45,10 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         mLoginBtn.enable(mPwdEt) { isLoginBtnEnable() }
 
         mUserNameEt.setText(SPUtils.getValue(Constant.USERNAME, ""))
-        mPwdEt.setText(String(Base64Utils.decode(SPUtils.getValue(Constant.PASSWORD, ""))))
+        val pwd = SPUtils.getValue(Constant.PASSWORD, "")
+        if(!TextUtils.isEmpty(pwd)){
+            mPwdEt.setText(String(Base64Utils.decode(pwd)))
+        }
 
         mLoginBtn.setOnClickListener(this)
         mNoAccountTv.setOnClickListener(this)

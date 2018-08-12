@@ -24,16 +24,18 @@ class InitService : IntentService("InitService") {
     @TargetApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         super.onCreate()
-        //通知渠道
-        val channel = NotificationChannel("start", "start",
-                NotificationManager.IMPORTANCE_HIGH)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //通知渠道
+            val channel = NotificationChannel("start", "start",
+                    NotificationManager.IMPORTANCE_HIGH)
 
-        //创建渠道
-        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.createNotificationChannel(channel)
+            //创建渠道
+            val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            manager.createNotificationChannel(channel)
 
-        val notification = Notification.Builder(this, "start").build()
-        startForeground(1, notification)
+            val notification = Notification.Builder(this, "start").build()
+            startForeground(1, notification)
+        }
     }
 
     override fun onHandleIntent(intent: Intent?) {

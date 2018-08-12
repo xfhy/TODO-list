@@ -24,7 +24,7 @@ class LoginFragmentPresenter(private val mView: LoginFragmentContract.View) : Rx
             override fun onNext(t: LoginBean?) {
                 super.onNext(t)
                 t.let {
-                    Logger.e(it.toString())
+                    Logger.e("登录成功 ${it.toString()}")
                     mView.loginSuccess()
                 }
             }
