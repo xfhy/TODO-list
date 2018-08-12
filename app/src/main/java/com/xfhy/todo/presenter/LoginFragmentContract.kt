@@ -11,6 +11,7 @@ interface LoginFragmentContract {
 
     interface Presenter : BasePresenter {
         fun login(name: String, password: String)
+        fun register(name: String, password: String)
     }
 
     interface View : BaseView {

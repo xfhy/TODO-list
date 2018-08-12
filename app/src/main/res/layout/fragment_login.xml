@@ -69,6 +69,21 @@
             android:textColor="@color/color_1e1e1e"
             android:textSize="@dimen/font_size_14"/>
 
+        <EditText
+            android:id="@+id/mConfirmPwdEt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:background="@null"
+            android:drawableLeft="@mipmap/icon_pwd"
+            android:drawablePadding="@dimen/common_padding_small"
+            android:hint="请输入确认密码"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:paddingLeft="@dimen/common_padding_small"
+            android:textColor="@color/color_1e1e1e"
+            android:textSize="@dimen/font_size_14"
+            android:visibility="gone"/>
+
     </LinearLayout>
 
     <Button

@@ -207,7 +207,6 @@ public final class Base64Utils {
      */
     public static String encode(byte[] data) {
         if (data == null || data.length < 1) {
-
             return null;
         }
 

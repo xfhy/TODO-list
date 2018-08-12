@@ -38,9 +38,10 @@ interface LoginService {
     @POST("user/login")
     fun login(@Field("username") username: String, @Field("password") password: String): Flowable<LoginBean>
 
+    @FormUrlEncoded
     @POST("user/register")
     fun register(@Field("username") username: String, @Field("password") password: String
-                 , @Field("repassword") repassword: String): Flowable<RegisterBean>
+                 , @Field("repassword") rePassword: String): Flowable<RegisterBean>
 
 }
 /*

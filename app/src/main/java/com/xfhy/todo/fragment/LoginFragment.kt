@@ -8,10 +8,12 @@ import com.xfhy.library.ext.enable
 import com.xfhy.library.utils.Base64Utils
 import com.xfhy.library.utils.SPUtils
 import com.xfhy.todo.R
+import com.xfhy.todo.activity.MainActivity
 import com.xfhy.todo.common.Constant
 import com.xfhy.todo.presenter.LoginFragmentContract
 import com.xfhy.todo.presenter.impl.LoginFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_login.*
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by feiyang on 2018/8/10 10:36
@@ -27,7 +29,12 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
             fragment.arguments = bundle
             return fragment
         }
+
+        const val REGISTER = 1000
+        const val LOGIN = 1001
     }
+
+    private var mCurrentState = LOGIN
 
     override fun initPresenter() {
         mPresenter = LoginFragmentPresenter(this)
@@ -46,9 +53,10 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
 
         mUserNameEt.setText(SPUtils.getValue(Constant.USERNAME, ""))
         val pwd = SPUtils.getValue(Constant.PASSWORD, "")
-        if(!TextUtils.isEmpty(pwd)){
+        if (!TextUtils.isEmpty(pwd)) {
             mPwdEt.setText(String(Base64Utils.decode(pwd)))
         }
+        mUserNameEt.setText("xxxxxxx415456465465")
 
         mLoginBtn.setOnClickListener(this)
         mNoAccountTv.setOnClickListener(this)
@@ -68,9 +76,24 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.mLoginBtn -> {
-                mPresenter?.login(mUserNameEt.text.toString(), mPwdEt.text.toString())
+                if (mCurrentState == REGISTER) {
+                    mPresenter?.register(mUserNameEt.text.toString(), mPwdEt.text.toString())
+                } else if (mCurrentState == LOGIN) {
+                    mPresenter?.login(mUserNameEt.text.toString(), mPwdEt.text.toString())
+                }
             }
             R.id.mNoAccountTv -> {
+                if (mCurrentState == LOGIN) {
+                    mCurrentState = REGISTER
+                    mNoAccountTv.text = "去登录"
+                    mConfirmPwdEt.visibility = View.VISIBLE
+                    mLoginBtn.text = "注册并登录"
+                } else {
+                    mCurrentState = LOGIN
+                    mNoAccountTv.text = "没有账号?去注册"
+                    mConfirmPwdEt.visibility = View.GONE
+                    mLoginBtn.text = "登录"
+                }
             }
         }
     }
@@ -89,11 +112,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     override fun loginSuccess() {
-
-    }
-
-    override fun showErrorMsg(errorMsg: String) {
-
+        startActivity<MainActivity>()
     }
 
 }
