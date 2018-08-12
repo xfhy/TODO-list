@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_todo"
+        android:enabled="true"
+        android:icon="@mipmap/icon_todo"
+        android:title="@string/TODO"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_tomato"
+        android:icon="@mipmap/icon_tomato"
+        android:title="@string/tomato"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_me"
+        android:icon="@mipmap/icon_me"
+        android:title="@string/about_me"
+        app:showAsAction="ifRoom" />
+
+</menu>
