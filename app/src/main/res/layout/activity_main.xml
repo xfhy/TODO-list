@@ -16,7 +16,7 @@
         android:id="@+id/bnv_main_bottom_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/color_ffffff"
+        android:itemBackground="@color/color_ffffff"
         app:itemIconTint="@color/selector_bottom_item_color"
         app:itemTextColor="@color/selector_bottom_item_color"
         app:menu="@menu/bottom_navigation_menu"/>

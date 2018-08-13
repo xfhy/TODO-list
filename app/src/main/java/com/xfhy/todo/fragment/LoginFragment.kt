@@ -79,7 +79,8 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
                 }
             }
             R.id.mNoAccountTv -> {
-                if (mCurrentState == LOGIN) {
+                loginSuccess()
+                /*if (mCurrentState == LOGIN) {
                     mCurrentState = REGISTER
                     mNoAccountTv.text = "去登录"
                     mConfirmPwdEt.visibility = View.VISIBLE
@@ -89,7 +90,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
                     mNoAccountTv.text = "没有账号?去注册"
                     mConfirmPwdEt.visibility = View.GONE
                     mLoginBtn.text = "登录"
-                }
+                }*/
             }
         }
     }

@@ -2,6 +2,9 @@ package com.xfhy.library.data.net
 
 import android.content.Context
 import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.xfhy.library.utils.SPUtils
 import okhttp3.*
 
 import java.util.concurrent.TimeUnit
@@ -37,8 +40,6 @@ object OkHttpUtils {
      * 连接超时
      */
     private const val CONNECT_TIME_OUT = 15
-
-    private val cookieStore = HashMap<String, MutableList<Cookie>>()
 
     private val interceptor: Interceptor
 
@@ -80,22 +81,30 @@ object OkHttpUtils {
                 //错误重连
                 .retryOnConnectionFailure(true)
                 //拦截器
-                .addNetworkInterceptor(mRewriteCacheControlInterceptor)   //缓冲拦截器
-                .addInterceptor(mRewriteCacheControlInterceptor)
+                //.addNetworkInterceptor(mRewriteCacheControlInterceptor)   //缓冲拦截器
+                //.addInterceptor(mRewriteCacheControlInterceptor)
                 .addInterceptor(interceptor)        //json
                 .addInterceptor(initLogInterceptor())  //日志拦截器
                 //缓存
                 .cache(cache)
                 //cookie 自动管理
                 .cookieJar(object : CookieJar {
+                    private var cookieStore = java.util.HashMap<String, MutableList<Cookie>>()
+                    private val gson = Gson()
                     override fun saveFromResponse(url: HttpUrl?, cookies: MutableList<Cookie>?) {
                         url ?: return
                         cookies ?: return
                         //HashMap 存值  将url的host存起来  domain是域名   host是主机
                         cookieStore[url.host()] = cookies
+
+                        SPUtils.putValue(url.host(), gson.toJson(cookieStore))
                     }
 
                     override fun loadForRequest(url: HttpUrl?): MutableList<Cookie> {
+                        val cookieList = SPUtils.getValue(url?.host() ?: "", "")
+                        cookieStore = gson.fromJson(cookieList, object : TypeToken<java.util.HashMap<String, MutableList<Cookie>>>() {}
+                                .type) ?: java.util.HashMap()
+                        //cookieStore = gson.fromJson(cookieList, cookieStore.javaClass)
                         return cookieStore[url?.host()] ?: mutableListOf()
                     }
                 })
