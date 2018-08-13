@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAccent">#39C5BB</color>
     <color name="colorPrimary">#03a9f4</color>
-    <color name="colorPrimaryDark">#03a9f4</color>
+    <color name="colorPrimaryDark">#0690cf</color>
+    <color name="colorAccent">#39C5BB</color>
 
     <!--字体颜色-->
     <color name="color_1e1e1e">#1e1e1e</color>

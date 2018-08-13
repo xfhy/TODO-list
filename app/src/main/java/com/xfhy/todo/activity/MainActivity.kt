@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import android.support.v4.view.GravityCompat
+import android.view.KeyEvent
 import android.view.MenuItem
 import com.xfhy.library.basekit.activity.BaseActivity
+import com.xfhy.library.common.AppManager
 import com.xfhy.todo.R
 import com.xfhy.todo.fragment.MeFragment
 import com.xfhy.todo.fragment.TodoFragment
@@ -38,6 +41,13 @@ import org.jetbrains.anko.toast
  *                     佛祖保佑        永无BUG
  */
 class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+
+    companion object {
+        /**
+         * 再按一次退出   中间的时间间隔
+         */
+        private const val BACK_TO_EXIT_TIME = 3000
+    }
 
     /**
      * 上次点击返回按键时间
@@ -110,6 +120,19 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.show(fragment)
         fragmentTransaction.commitAllowingStateLoss()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event?.action == KeyEvent.ACTION_DOWN) {
+            if (System.currentTimeMillis() - lastClickTime < BACK_TO_EXIT_TIME) {
+                AppManager.instance.exitApp(mContext)
+            } else {
+                toast("再按一次退出")
+                lastClickTime = System.currentTimeMillis()
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
 }
