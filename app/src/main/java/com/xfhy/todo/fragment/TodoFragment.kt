@@ -1,7 +1,6 @@
 package com.xfhy.todo.fragment
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.xfhy.library.basekit.fragment.BaseMvpFragment
 import com.xfhy.library.utils.SnackbarUtil
@@ -32,6 +31,7 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        mPresenter?.getUndoneTodoList()
     }
 
     private fun initView() {
@@ -42,7 +42,8 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
         }
     }
 
-    override fun showTodoList(todoList: TodoBean) {
+    override fun showTodoList(todoData: TodoBean.Data) {
+
     }
 
 

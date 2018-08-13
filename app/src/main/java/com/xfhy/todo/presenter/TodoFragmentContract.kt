@@ -11,11 +11,31 @@ import com.xfhy.todo.data.bean.TodoBean
 interface TodoFragmentContract {
 
     interface Presenter : BasePresenter {
-        fun getTodoList()
+        /**
+         * 获取未完成列表
+         */
+        fun getUndoneTodoList()
+
+        /**
+         * 获取已完成列表
+         */
+        fun getDoneTodoList()
+
+        /**
+         * 标记某个todo 已完成
+         * @param status 0:完成  1:未完成
+         */
+        fun markTodoStatus(id: Int, status: Int)
+
+        /**
+         * 删除某个todo
+         */
+        fun deleteTodoById(id: Int)
+
     }
 
     interface View : BaseView {
-        fun showTodoList(todoList: TodoBean)
+        fun showTodoList(todoData: TodoBean.Data)
     }
 
 }

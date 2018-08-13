@@ -2,13 +2,13 @@ package com.xfhy.library.data.net
 
 import android.content.Context
 import android.util.Log
+import okhttp3.*
 
 import java.util.concurrent.TimeUnit
 
-import okhttp3.Cache
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import java.io.File
+
 
 /**
  * Created by xfhy on 2017/9/24 22:18.
@@ -23,21 +23,22 @@ object OkHttpUtils {
      */
     @JvmStatic
     @get:Synchronized
-    lateinit var okHttpClient: OkHttpClient
-        private set
+    var okHttpClient: OkHttpClient? = null
 
     /**
      * 最大缓存 10M
      */
-    private val MAX_CACHE_SIZE = 10 * 1024 * 1024
+    private const val MAX_CACHE_SIZE = 10 * 1024 * 1024
     /**
      * 读取超时 20s
      */
-    private val READ_TIME_OUT = 20
+    private const val READ_TIME_OUT = 20
     /**
      * 连接超时
      */
-    private val CONNECT_TIME_OUT = 15
+    private const val CONNECT_TIME_OUT = 15
+
+    private val cookieStore = HashMap<String, MutableList<Cookie>>()
 
     private val interceptor: Interceptor
 
@@ -68,38 +69,37 @@ object OkHttpUtils {
         //拦截器
         val mRewriteCacheControlInterceptor = RewriteCacheControlInterceptor(context)
 
-        //缓存文件
-        val cacheFile = context.cacheDir
+        //缓存文件夹
+        val cacheFile = File(context.externalCacheDir.toString(), "cache")
         //设置缓存大小
         val cache = Cache(cacheFile, MAX_CACHE_SIZE.toLong())
-        if (cacheFile != null) {
-            okHttpClient = OkHttpClient.Builder()
-                    //超时设置
-                    .readTimeout(READ_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                    .connectTimeout(CONNECT_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                    //错误重连
-                    .retryOnConnectionFailure(true)
-                    //拦截器
-                    .addNetworkInterceptor(mRewriteCacheControlInterceptor)   //缓冲拦截器
-                    .addInterceptor(mRewriteCacheControlInterceptor)
-                    .addInterceptor(interceptor)        //json
-                    .addInterceptor(initLogInterceptor())  //日志拦截器
-                    //缓存
-                    .cache(cache)
-                    .build()
-        } else {
-            okHttpClient = OkHttpClient.Builder()//超时设置
-                    .readTimeout(READ_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                    .connectTimeout(CONNECT_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                    //错误重连
-                    .retryOnConnectionFailure(true)
-                    //拦截器
-                    .addNetworkInterceptor(mRewriteCacheControlInterceptor)   //缓冲拦截器
-                    .addInterceptor(mRewriteCacheControlInterceptor)
-                    .addInterceptor(interceptor)        //json
-                    .addInterceptor(initLogInterceptor())  //日志拦截器
-                    .build()
-        }
+        okHttpClient = OkHttpClient.Builder()
+                //超时设置
+                .readTimeout(READ_TIME_OUT.toLong(), TimeUnit.SECONDS)
+                .connectTimeout(CONNECT_TIME_OUT.toLong(), TimeUnit.SECONDS)
+                //错误重连
+                .retryOnConnectionFailure(true)
+                //拦截器
+                .addNetworkInterceptor(mRewriteCacheControlInterceptor)   //缓冲拦截器
+                .addInterceptor(mRewriteCacheControlInterceptor)
+                .addInterceptor(interceptor)        //json
+                .addInterceptor(initLogInterceptor())  //日志拦截器
+                //缓存
+                .cache(cache)
+                //cookie 自动管理
+                .cookieJar(object : CookieJar {
+                    override fun saveFromResponse(url: HttpUrl?, cookies: MutableList<Cookie>?) {
+                        url ?: return
+                        cookies ?: return
+                        //HashMap 存值  将url的host存起来  domain是域名   host是主机
+                        cookieStore[url.host()] = cookies
+                    }
+
+                    override fun loadForRequest(url: HttpUrl?): MutableList<Cookie> {
+                        return cookieStore[url?.host()] ?: mutableListOf()
+                    }
+                })
+                .build()
 
     }
 

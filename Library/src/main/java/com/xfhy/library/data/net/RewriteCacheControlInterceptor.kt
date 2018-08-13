@@ -26,12 +26,12 @@ class RewriteCacheControlInterceptor(private val mContext: Context) : Intercepto
         /**
          * 无网络,设缓存有效期为两周
          */
-        private val CACHE_STALE_SEC = (60 * 60 * 24 * 14).toLong()
+        private const val CACHE_STALE_SEC = (60 * 60 * 24 * 14).toLong()
         /**
          * 有网 缓存60s
          * 测试-----------------改为0,为了及时看到效果
          */
-        private val MAX_AGE: Long = 0
+        private const val MAX_AGE: Long = 0
     }
 
     @Throws(IOException::class)
@@ -50,13 +50,13 @@ class RewriteCacheControlInterceptor(private val mContext: Context) : Intercepto
         return if (NetWorkUtils.isNetWorkAvailable(mContext)) {
             //有网的时候连接服务器请求,缓存60s
             originalResponse.newBuilder()
-                    .header("Cache-Control", "public, max-age=" + MAX_AGE)
+                    .header("Cache-Control", "public, max-age=$MAX_AGE")
                     .removeHeader("Pragma")
                     .build()
         } else {
             //网络断开时读取缓存
             originalResponse.newBuilder()
-                    .header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC)
+                    .header("Cache-Control", "public, only-if-cached, max-stale=$CACHE_STALE_SEC")
                     .removeHeader("Pragma")
                     .build()
         }

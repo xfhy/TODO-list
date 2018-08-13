@@ -26,7 +26,6 @@ interface TodoService {
     类型：类型拼接在链接上，目前支持0,1,2,3
     页码: 拼接在链接上，从1开始；
      * */
-    @FormUrlEncoded
     @POST("lg/todo/listnotdo/{type}/json/{page}")
     fun getUndoneTodoList(@Path("type") type: Int, @Path("page") page: Int): Flowable<TodoBean>
 
@@ -41,7 +40,6 @@ interface TodoService {
     类型：类型拼接在链接上，目前支持0,1,2,3
     页码: 拼接在链接上，从1开始；
      * */
-    @FormUrlEncoded
     @POST("lg/todo/listdone/{type}/json/{page}")
     fun getDoneTodoList(@Path("type") type: Int, @Path("page") page: Int): Flowable<TodoBean>
 
@@ -56,7 +54,7 @@ interface TodoService {
      * */
     @FormUrlEncoded
     @POST("lg/todo/done/{id}/json")
-    fun markTodoDone(@Path("id") id: Int, @Field("status") status: Int): Flowable<BaseResp<String>>
+    fun markTodoStatus(@Path("id") id: Int, @Field("status") status: Int): Flowable<BaseResp<String>>
 
     /**
      * 删除一条Todo
