@@ -2,16 +2,15 @@ package com.xfhy.todo.activity
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.Snackbar
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.view.MenuItem
 import com.xfhy.library.basekit.activity.BaseActivity
 import com.xfhy.todo.R
+import com.xfhy.todo.fragment.MeFragment
+import com.xfhy.todo.fragment.TodoFragment
+import com.xfhy.todo.fragment.TomatoFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_todo_list.*
 import org.jetbrains.anko.toast
 
 /**
@@ -40,6 +39,14 @@ import org.jetbrains.anko.toast
  */
 class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * 上次点击返回按键时间
+     */
+    private var lastClickTime = 0L
+    private val mTodoFragment: TodoFragment by lazy { TodoFragment.newInstance() }
+    private val mTomatoFragment: TomatoFragment by lazy { TomatoFragment.newInstance() }
+    private val mMeFragment: MeFragment by lazy { MeFragment.newInstance() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -49,23 +56,60 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
     private fun initView() {
         bnv_main_bottom_view.setOnNavigationItemSelectedListener(this)
+
+        addFragment(supportFragmentManager, mTodoFragment, "TodoFragment")
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        hideAllFragment(supportFragmentManager)
         when (item.itemId) {
             R.id.action_todo -> {
                 toast("清单")
+                addFragment(supportFragmentManager, mTodoFragment, "TodoFragment")
+                showFragment(supportFragmentManager, mTodoFragment)
             }
             R.id.action_tomato -> {
                 toast("番茄")
+                addFragment(supportFragmentManager, mTomatoFragment, "TomatoFragment")
+                showFragment(supportFragmentManager, mTomatoFragment)
             }
             R.id.action_me -> {
                 toast("我的")
+                addFragment(supportFragmentManager, mMeFragment, "MeFragment")
+                showFragment(supportFragmentManager, mMeFragment)
             }
             else -> {
             }
         }
         return true
+    }
+
+    private fun hideAllFragment(fragmentManager: FragmentManager) {
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        if (!mTodoFragment.isHidden) {
+            fragmentTransaction.hide(mTodoFragment)
+        }
+        if (!mTomatoFragment.isHidden) {
+            fragmentTransaction.hide(mTomatoFragment)
+        }
+        if (!mMeFragment.isHidden) {
+            fragmentTransaction.hide(mMeFragment)
+        }
+        fragmentTransaction.commitAllowingStateLoss()
+    }
+
+    private fun addFragment(fragmentManager: FragmentManager, fragment: Fragment, tag: String) {
+        if (!fragment.isAdded && fragmentManager.findFragmentByTag(tag) == null) {
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.add(R.id.rl_main_center_view, fragment, tag)
+            fragmentTransaction.commitAllowingStateLoss()
+        }
+    }
+
+    private fun showFragment(fragmentManager: FragmentManager, fragment: Fragment) {
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.show(fragment)
+        fragmentTransaction.commitAllowingStateLoss()
     }
 
 }

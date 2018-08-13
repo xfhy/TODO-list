@@ -23,11 +23,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
 
     companion object {
         fun newInstance(): LoginFragment {
-            val bundle = Bundle()
-
-            val fragment = LoginFragment()
-            fragment.arguments = bundle
-            return fragment
+            return LoginFragment()
         }
 
         const val REGISTER = 1000
