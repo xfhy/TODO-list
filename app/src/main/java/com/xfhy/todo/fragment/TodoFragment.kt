@@ -10,10 +10,12 @@ import com.xfhy.library.basekit.fragment.BaseMvpFragment
 import com.xfhy.library.utils.SnackbarUtil
 import com.xfhy.todo.R
 import com.xfhy.todo.adapter.TodoAdapter
+import com.xfhy.todo.common.Constant
 import com.xfhy.todo.data.bean.TodoBean
 import com.xfhy.todo.presenter.TodoFragmentContract
 import com.xfhy.todo.presenter.impl.TodoFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_todo_list.*
+
 
 /**
  * Created by feiyang on 2018/8/13 11:41
@@ -21,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_todo_list.*
  */
 class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFragmentContract.View,
         BaseQuickAdapter.OnItemClickListener<TodoBean.Data.TodoItem, BaseViewHolder>,
-        BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
+        BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, TodoAdapter.OnClickListener {
 
     companion object {
         fun newInstance(): TodoFragment {
@@ -47,17 +49,22 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
         mToolbar.title = "TODO"
         //下拉刷新颜色
         mRefreshLayout.setColorSchemeResources(R.color.colorPrimary)
+
+        //adapter
         mTodoAdapter = TodoAdapter(null)
         mTodoAdapter?.openLoadAnimation()
         mTodoAdapter?.isFirstOnly(false)
         mTodoAdapter?.setEnableLoadMore(true)
-        mRecyclerView.layoutManager = LinearLayoutManager(activity)
+        val linearLayoutManager = LinearLayoutManager(activity)
+        mRecyclerView.layoutManager = linearLayoutManager
         mRecyclerView.adapter = mTodoAdapter
 
         mTodoAdapter?.onItemClickListener = this
+        mTodoAdapter?.setOnClickListener(this)
         mRefreshLayout.setOnRefreshListener(this)
         mTodoAdapter?.setOnLoadMoreListener(this, mRecyclerView)
 
+        //添加按钮
         fab_add_todo.setOnClickListener {
             SnackbarUtil.showBarShortTime(fab_add_todo, "添加", SnackbarUtil.INFO)
         }
@@ -75,10 +82,14 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
         mTodoAdapter?.disableLoadMoreIfNotFullPage()
     }
 
+    override fun hideLoading() {
+        super.hideLoading()
+        mRefreshLayout.isRefreshing = false
+    }
+
     override fun loadMoreFailed() {
         mTodoAdapter?.loadMoreFail()
     }
-
 
     override fun onRefresh(todoData: MutableList<TodoBean.Data.TodoItem>) {
         mRefreshLayout.isRefreshing = false
@@ -104,6 +115,47 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
 
     override fun onRefresh() {
         mPresenter?.onRefresh()
+    }
+
+    override fun doneTodoItem(position: Int) {
+        val todoData = mTodoAdapter?.data
+        todoData ?: return
+        //标记网络数据
+        mPresenter?.markTodoStatus(todoData[position].id, Constant.DONE_STATES)
+
+        removeItem(position, todoData)
+    }
+
+    override fun deleteTodoItem(position: Int) {
+        val todoData = mTodoAdapter?.data
+        todoData ?: return
+
+        //删除网络数据
+        mPresenter?.deleteTodoById(mTodoAdapter?.data?.get(position)?.id ?: 0)
+        removeItem(position, todoData)
+    }
+
+    private fun removeItem(position: Int, todoData: MutableList<TodoBean.Data.TodoItem>) {
+        if (position < 0 || position >= todoData.size) {
+            return
+        }
+        mTodoAdapter?.removeItem(position)
+        if (todoData.size == 1) {
+            //上一个是header
+            if (todoData[position - 1].isHeader) {
+                mTodoAdapter?.removeItem(position - 1)
+            }
+        } else if (todoData.size >= 2) {
+            //上一个是header 下一个是header
+            if (todoData[position - 1].isHeader && position < todoData.size && todoData[position].isHeader) {
+                mTodoAdapter?.removeItem(position - 1)
+            }
+        }
+
+        //如果最后一个是header  则删除末尾
+        if (todoData.isNotEmpty() && todoData.last().isHeader) {
+            mTodoAdapter?.removeItem(todoData.size - 1)
+        }
     }
 
 }

@@ -7,4 +7,8 @@ package com.xfhy.todo.common
 object Constant {
     const val USERNAME = "username"
     const val PASSWORD = "password"
+    const val IS_LOGIN = "is_login"
+    const val DONE_STATES = 0
+    const val UNDONE_STATES = 1
+
 }

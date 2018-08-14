@@ -52,7 +52,8 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         if (!TextUtils.isEmpty(pwd)) {
             mPwdEt.setText(String(Base64Utils.decode(pwd)))
         }
-        //mUserNameEt.setText("xxxxxxx415456465465")
+        mUserNameEt.setText("xxxxxxx415456465465")
+        mPwdEt.setText("xxxxxxx")
 
         mLoginBtn.setOnClickListener(this)
         mNoAccountTv.setOnClickListener(this)
@@ -109,6 +110,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
     }
 
     override fun loginSuccess() {
+        SPUtils.putValue(Constant.IS_LOGIN, true)
         startActivity<MainActivity>()
     }
 

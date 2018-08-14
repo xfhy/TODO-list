@@ -850,7 +850,7 @@ abstract class BaseQuickAdapter<T, K : BaseViewHolder>
      * @param position 删除item的位置
      */
     fun removeItem(@IntRange(from = 0) position: Int) {
-        if (mData == null) {
+        if (mData == null || position < 0) {
             return
         }
         if (position >= (mData?.size ?: 0)) {

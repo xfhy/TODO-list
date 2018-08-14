@@ -1,6 +1,7 @@
 package com.xfhy.library.data.net
 
 import android.content.Context
+import android.text.TextUtils
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -94,11 +95,15 @@ object OkHttpUtils {
                     override fun saveFromResponse(url: HttpUrl?, cookies: MutableList<Cookie>?) {
                         url ?: return
                         cookies ?: return
-                        //HashMap 存值  将url的host存起来  domain是域名   host是主机
-                        cookieStore[url.host()] = cookies
 
-                        //将cookie序列化到SP中  避免下次进入APP时cookie没有了之前的cookie
-                        SPUtils.putValue(url.host(), gson.toJson(cookieStore))
+                        //登录成功则不存cookie
+                        if(!SPUtils.getValue("is_login",false)){
+                            //HashMap 存值  将url的host存起来  domain是域名   host是主机
+                            cookieStore[url.host()] = cookies
+
+                            //将cookie序列化到SP中  避免下次进入APP时cookie没有了之前的cookie
+                            SPUtils.putValue(url.host(), gson.toJson(cookieStore))
+                        }
                     }
 
                     override fun loadForRequest(url: HttpUrl?): MutableList<Cookie> {

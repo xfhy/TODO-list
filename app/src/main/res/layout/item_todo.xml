@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/color_fafafa"
     android:padding="@dimen/dimen_10">
 
     <ImageView
@@ -12,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/icon_undone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -24,7 +26,6 @@
         android:textColor="@color/color_1e1e1e"
         android:textSize="@dimen/font_size_15"
         app:layout_constraintStart_toEndOf="@+id/iv_item_undo"
-        app:layout_constraintTop_toTopOf="@+id/iv_item_undo"
         tools:text="标题"/>
 
     <TextView

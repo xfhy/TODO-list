@@ -64,7 +64,6 @@ interface TodoService {
     参数：
     id: 拼接在链接上，为唯一标识
      * */
-    @FormUrlEncoded
     @POST("lg/todo/delete/{id}/json")
     fun deleteTodoById(@Path("id") id: Int): Flowable<BaseResp<String>>
 
