@@ -1,5 +1,7 @@
 package com.xfhy.todo.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
@@ -30,9 +32,15 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
         fun newInstance(): TodoFragment {
             return TodoFragment()
         }
+
+        const val EDIT_REQUEST_CODE = 1003
     }
 
     private var mTodoAdapter: TodoAdapter? = null
+    /**
+     * 当前正在编辑的item 的position
+     */
+    private var mEditPosition = -1
 
     override fun initPresenter() {
         mPresenter = TodoFragmentPresenter(this)
@@ -103,7 +111,9 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
     }
 
     override fun onItemClick(adapter: BaseQuickAdapter<TodoBean.Data.TodoItem, BaseViewHolder>, view: View, position: Int) {
-        EditTodoActivity.enterEditTodoActivity(context,adapter.getItem(position))
+        //这里还需要记录传过去的position  用于待会儿更改这边的数据
+        mEditPosition = position
+        EditTodoActivity.enterEditTodoActivity(this, adapter.getItem(position), EDIT_REQUEST_CODE)
     }
 
     override fun onLoadMoreRequested() {
@@ -156,6 +166,32 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
         //如果最后一个是header  则删除末尾
         if (todoData.isNotEmpty() && todoData.last().isHeader) {
             mTodoAdapter?.removeItem(todoData.size - 1)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+        if (requestCode == EDIT_REQUEST_CODE) {
+            //记录传回来的值  更改adapter中对应position的值
+            if (mEditPosition == -1) {
+                return
+            }
+            val adapterDataList = mTodoAdapter?.data
+            adapterDataList ?: return
+            data ?: return
+            if (mEditPosition < 0 || mEditPosition >= adapterDataList.size) {
+                return
+            }
+
+            //找出更改过的item 更新RecyclerView
+            val bundle = data.extras
+            val todoItem = bundle.getSerializable(EditTodoActivity.EDIT_TODO_ITEM)
+            if (todoItem is TodoBean.Data.TodoItem) {
+                adapterDataList[mEditPosition] = todoItem
+                mTodoAdapter?.notifyItemChanged(mEditPosition)
+            }
         }
     }
 

@@ -29,7 +29,7 @@ data class TodoBean(
 
         class TodoItem : SectionEntity<TodoItem>, Serializable {
             @SerializedName("completeDate")
-            var completeDate: Any = Any()
+            var completeDate: Long = 0
             @SerializedName("completeDateStr")
             var completeDateStr: String = ""
             @SerializedName("content")

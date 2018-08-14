@@ -16,7 +16,7 @@ import io.reactivex.Flowable
  */
 class TodoFragmentPresenter(private val mView: TodoFragmentContract.View) : RxPresenter(), TodoFragmentContract.Presenter {
 
-    var mUndonePage = 1
+    private var mUndonePage = 1
 
     override fun getUndoneTodoList() {
         //分页

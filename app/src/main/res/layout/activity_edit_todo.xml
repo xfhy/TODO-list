@@ -80,7 +80,9 @@
         android:id="@+id/mChooseTimeTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/dimen_10"
         android:drawableStart="@mipmap/icon_time"
+        android:gravity="center_vertical"
         android:padding="@dimen/dimen_10"
         android:textColor="@color/color_1e1e1e"
         android:textSize="@dimen/font_size_14"
@@ -93,14 +95,14 @@
 
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
+        android:id="@+id/mOkAnimationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dimen_20"
         app:lottie_autoPlay="false"
         app:lottie_loop="false"
-        app:lottie_rawRes="@raw/checked_done"
-        app:lottie_progress="1.0"/>
+        app:lottie_progress="1.0"
+        app:lottie_rawRes="@raw/checked_done"/>
 
 </LinearLayout>

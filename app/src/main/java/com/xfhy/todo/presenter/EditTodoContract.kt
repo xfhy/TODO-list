@@ -12,7 +12,7 @@ interface EditTodoContract {
     interface Presenter : BasePresenter {
         fun addTodo(title: String, content: String, date: String)
 
-        fun update(id: Int, title: String, content: String, date: String)
+        fun update(id: Int, title: String, content: String, date: String, status: Int)
     }
 
     interface View : BaseView {
