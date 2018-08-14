@@ -56,6 +56,6 @@ abstract class BaseSectionQuickAdapter<T : SectionEntity<T>, K : BaseViewHolder>
         /**
          * 分组header类型
          */
-        protected val SECTION_HEADER_VIEW = 0x00000444
+        protected const val SECTION_HEADER_VIEW = 0x00000444
     }
 }

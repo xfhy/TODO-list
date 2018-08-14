@@ -183,7 +183,7 @@ abstract class BaseQuickAdapter<T, K : BaseViewHolder>
      *
      * @return 列表数据
      */
-    val data: List<T>?
+    val data: MutableList<T>?
         get() = mData
 
     /**
@@ -1204,7 +1204,7 @@ abstract class BaseQuickAdapter<T, K : BaseViewHolder>
      */
     private fun getTheBiggestNumber(numbers: IntArray?): Int {
         var tmp = -1
-        if (numbers == null || numbers.size == 0) {
+        if (numbers == null || numbers.isEmpty()) {
             return tmp
         }
         for (num in numbers) {

@@ -18,11 +18,7 @@ abstract class BaseMultiItemQuickAdapter<T : MultiItemEntity, K : BaseViewHolder
      * layouts indexed with their types
      * key是type，value是layoutResId
      */
-    private var layouts: SparseIntArray
-
-    init {
-        layouts = SparseIntArray()
-    }
+    private var layouts: SparseIntArray = SparseIntArray()
 
     override fun getDefItemViewType(position: Int): Int {
         val item = mData?.get(position)

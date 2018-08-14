@@ -1,6 +1,7 @@
 package com.xfhy.todo.data.bean
 
 import com.google.gson.annotations.SerializedName
+import com.xfhy.library.adapter.entity.SectionEntity
 import java.io.Serializable
 
 
@@ -9,45 +10,49 @@ import java.io.Serializable
  * Description : tudo列表的bean
  */
 
+
 data class TodoBean(
         @SerializedName("data") var data: Data = Data(),
         @SerializedName("errorCode") var errorCode: Int = 0,
         @SerializedName("errorMsg") var errorMsg: String = ""
-) : Serializable {
+) {
 
     data class Data(
-            @SerializedName("doneList") var doneList: List<Done> = listOf(),
-            @SerializedName("todoList") var todoList: List<Todo> = listOf(),
-            @SerializedName("type") var type: Int = 0
-    ) : Serializable {
+            @SerializedName("curPage") var curPage: Int = 0,
+            @SerializedName("datas") var todoList: MutableList<TodoItem> = mutableListOf(),
+            @SerializedName("offset") var offset: Int = 0,
+            @SerializedName("over") var over: Boolean = false,
+            @SerializedName("pageCount") var pageCount: Int = 0,
+            @SerializedName("size") var size: Int = 0,
+            @SerializedName("total") var total: Int = 0
+    ) {
 
-        /**
-         * 未完成
-         */
-        data class Todo(
-                @SerializedName("date") var date: Long = 0,
-                @SerializedName("todoList") var todoList: List<Todo> = listOf()
-        ) : Serializable
+        class TodoItem : SectionEntity<TodoItem>, Serializable {
+            @SerializedName("completeDate")
+            var completeDate: Any = Any()
+            @SerializedName("completeDateStr")
+            var completeDateStr: String = ""
+            @SerializedName("content")
+            var content: String = ""
+            @SerializedName("date")
+            var date: Long = 0
+            @SerializedName("dateStr")
+            var dateStr: String = ""
+            @SerializedName("id")
+            var id: Int = 0
+            @SerializedName("status")
+            var status: Int = 0
+            @SerializedName("title")
+            var title: String = ""
+            @SerializedName("type")
+            var type: Int = 0
+            @SerializedName("userId")
+            var userId: Int = 0
+
+            constructor() : super()
+            constructor(isHeader: Boolean) : super(isHeader)
+            constructor(t: TodoItem) : super(t)
+            constructor(isHeader: Boolean, header: String) : super(isHeader, header)
+        }
     }
-
-    /**
-     * 已完成
-     */
-    data class Done(
-            @SerializedName("date") var date: Long = 0,
-            @SerializedName("todoList") var todoList: List<Todo> = listOf()
-    ) : Serializable
 }
-
-data class Todo(
-        @SerializedName("completeDate") var completeDate: Long = 0,
-        @SerializedName("completeDateStr") var completeDateStr: String = "",
-        @SerializedName("content") var content: String = "",
-        @SerializedName("date") var date: Long = 0,
-        @SerializedName("dateStr") var dateStr: String = "",
-        @SerializedName("id") var id: Int = 0,
-        @SerializedName("status") var status: Int = 0,
-        @SerializedName("title") var title: String = "",
-        @SerializedName("type") var type: Int = 0,
-        @SerializedName("userId") var userId: Int = 0
-) : Serializable

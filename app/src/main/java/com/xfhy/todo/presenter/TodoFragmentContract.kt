@@ -30,7 +30,12 @@ interface TodoFragmentContract {
         /**
          * 加载更多数据
          */
-        fun loadMoreData()
+        fun loadMoreData(lastDateL: Long)
+
+        /**
+         * 刷新
+         */
+        fun onRefresh()
 
     }
 
@@ -38,12 +43,27 @@ interface TodoFragmentContract {
         /**
          * 展示todo 列表
          */
-        fun showTodoList(todoData: TodoBean.Data)
+        fun showTodoList(todoData: MutableList<TodoBean.Data.TodoItem>)
 
         /**
          * 展示一个小提示消息
          */
         fun showTips(tips: String)
+
+        /**
+         * 刷新
+         */
+        fun onRefresh(todoData: MutableList<TodoBean.Data.TodoItem>)
+
+        /**
+         * 加载更多成功
+         */
+        fun loadMoreSuccess(todoData: MutableList<TodoBean.Data.TodoItem>)
+
+        /**
+         * 加载更多失败
+         */
+        fun loadMoreFailed()
     }
 
 }

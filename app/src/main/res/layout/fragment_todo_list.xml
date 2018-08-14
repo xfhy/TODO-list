@@ -24,10 +24,28 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/mRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"/>
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <!--通用的带刷新的列表布局  -->
+
+        <com.xfhy.library.widgets.StatefulLayout
+            android:id="@+id/sfl_state_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/fragment_background"
+                tools:listitem="@layout/item_todo"/>
+        </com.xfhy.library.widgets.StatefulLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
     <android.support.design.widget.FloatingActionButton

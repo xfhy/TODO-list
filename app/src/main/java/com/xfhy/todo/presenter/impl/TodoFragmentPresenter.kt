@@ -30,7 +30,22 @@ class TodoFragmentPresenter(private val mView: TodoFragmentContract.View) : RxPr
                     override fun onNext(t: TodoBean?) {
                         super.onNext(t)
                         if (t?.errorCode == 0) {
-                            mView.showTodoList(t.data)
+                            //临时记录数据
+                            val resultList = mutableListOf<TodoBean.Data.TodoItem>()
+                            var lastDate = 0L
+                            //将header组装起来
+                            for (todo in t.data.todoList) {
+                                if (lastDate == todo.date) {
+                                    resultList.add(todo)
+                                } else {
+                                    resultList.add(TodoBean.Data.TodoItem(true, todo.dateStr))
+                                    resultList.add(todo)
+                                    lastDate = todo.date
+                                }
+                            }
+                            mView.showTodoList(resultList)
+                        } else {
+                            mView.showEmptyView()
                         }
                     }
                 }))
@@ -61,8 +76,63 @@ class TodoFragmentPresenter(private val mView: TodoFragmentContract.View) : RxPr
                 }))
     }
 
-    override fun loadMoreData() {
+    /**
+     * 加载更多数据
+     * @param lastDateL 上一次最后的那个时间节点
+     */
+    override fun loadMoreData(lastDateL: Long) {
         mUndonePage++
-        getUndoneTodoList()
+        addSubscribe(TodoDataManager.getUndoneTodoList(ZERO, mUndonePage).compose(SchedulerUtils.ioToMain())
+                .subscribeWith(object : CommonSubscriber<TodoBean>(mView, "获取TODO失败") {
+                    override fun onNext(t: TodoBean?) {
+                        super.onNext(t)
+                        if (t?.errorCode == 0) {
+                            //临时记录数据
+                            val resultList = mutableListOf<TodoBean.Data.TodoItem>()
+                            var lastDate = lastDateL
+                            //将header组装起来
+                            for (todo in t.data.todoList) {
+                                if (lastDate == todo.date) {
+                                    resultList.add(todo)
+                                } else {
+                                    resultList.add(TodoBean.Data.TodoItem(true, todo.dateStr))
+                                    resultList.add(todo)
+                                    lastDate = todo.date
+                                }
+                            }
+                            mView.loadMoreSuccess(resultList)
+                        } else {
+                            mView.loadMoreFailed()
+                        }
+                    }
+                }))
+    }
+
+    override fun onRefresh() {
+        mUndonePage = 1
+        //分页
+        mView.showLoading()
+        addSubscribe(TodoDataManager.getUndoneTodoList(ZERO, mUndonePage).compose(SchedulerUtils.ioToMain())
+                .subscribeWith(object : CommonSubscriber<TodoBean>(mView, "获取TODO失败") {
+                    override fun onNext(t: TodoBean?) {
+                        super.onNext(t)
+                        if (t?.errorCode == 0) {
+                            val resultList = mutableListOf<TodoBean.Data.TodoItem>()
+                            var lastDate = 0L
+                            for (todo in t.data.todoList) {
+                                if (lastDate == todo.date) {
+                                    resultList.add(todo)
+                                } else {
+                                    resultList.add(TodoBean.Data.TodoItem(true, todo.dateStr))
+                                    resultList.add(todo)
+                                    lastDate = todo.date
+                                }
+                            }
+                            mView.onRefresh(resultList)
+                        } else {
+                            mView.showEmptyView()
+                        }
+                    }
+                }))
     }
 }
