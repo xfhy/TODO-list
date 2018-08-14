@@ -17,7 +17,6 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name">
-
         </activity>
 
         <service
@@ -33,6 +32,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SplashActivity">
+        </activity>
+        <activity android:name=".activity.EditTodoActivity">
         </activity>
     </application>
 

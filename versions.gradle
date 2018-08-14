@@ -19,6 +19,7 @@ ext.rx_lifecycle_version = "2.2.2"
 ext.logger_version = "2.2.0"
 ext.rxpermissions_version = "0.9.5@aar"
 ext.multidex_version = "1.0.3"
+ext.lottieVersion = "2.5.6"
 
 ext.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 ext.app_compat = "com.android.support:appcompat-v7:$versionsSupport"

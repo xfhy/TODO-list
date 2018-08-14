@@ -7,6 +7,11 @@ import com.xfhy.todo.fragment.LoginFragment
 
 private const val LOGIN_TAG = "login_tag"
 
+/**
+ * 2018年8月14日17:33:25
+ * @author xfhy
+ * 登录页
+ */
 class LoginActivity : TitleBarActivity() {
 
     private val mLoginFragment by lazy { LoginFragment.newInstance() }

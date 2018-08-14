@@ -9,6 +9,7 @@ import com.xfhy.library.adapter.BaseViewHolder
 import com.xfhy.library.basekit.fragment.BaseMvpFragment
 import com.xfhy.library.utils.SnackbarUtil
 import com.xfhy.todo.R
+import com.xfhy.todo.activity.EditTodoActivity
 import com.xfhy.todo.adapter.TodoAdapter
 import com.xfhy.todo.common.Constant
 import com.xfhy.todo.data.bean.TodoBean
@@ -102,7 +103,7 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
     }
 
     override fun onItemClick(adapter: BaseQuickAdapter<TodoBean.Data.TodoItem, BaseViewHolder>, view: View, position: Int) {
-
+        EditTodoActivity.enterEditTodoActivity(context,adapter.getItem(position))
     }
 
     override fun onLoadMoreRequested() {

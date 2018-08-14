@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.EditTodoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_10">
+
+        <TextView
+            android:id="@+id/mFixedTitleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="标题 :"
+            android:textColor="@color/gray_cdcdcd"
+            android:textSize="@dimen/font_size_14"/>
+
+        <EditText
+            android:id="@+id/mTitleEt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dimen_10"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/todo_title_hint"
+            android:textColor="@color/color_1e1e1e"
+            android:textColorHint="@color/gray_cdcdcd"
+            android:textSize="@dimen/font_size_14"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:background="@color/gray_cdcdcd"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_10">
+
+        <TextView
+            android:id="@+id/mFixedContentTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:text="详情 :"
+            android:textColor="@color/gray_cdcdcd"
+            android:textSize="@dimen/font_size_14"/>
+
+        <EditText
+            android:id="@+id/mContentEt"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_200"
+            android:layout_marginStart="@dimen/dimen_10"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="@string/todo_content_hint"
+            android:lines="6"
+            android:textColor="@color/color_1e1e1e"
+            android:textColorHint="@color/gray_cdcdcd"
+            android:textSize="@dimen/font_size_14"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:background="@color/gray_cdcdcd"/>
+
+    <TextView
+        android:id="@+id/mChooseTimeTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@mipmap/icon_time"
+        android:padding="@dimen/dimen_10"
+        android:textColor="@color/color_1e1e1e"
+        android:textSize="@dimen/font_size_14"
+        tools:text="2018-08-14"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:background="@color/gray_cdcdcd"/>
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_20"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/checked_done"
+        app:lottie_progress="1.0"/>
+
+</LinearLayout>

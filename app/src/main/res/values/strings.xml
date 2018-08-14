@@ -10,4 +10,6 @@
     <string name="tomato">番茄</string>
     <string name="about_me">我的</string>
     <string name="complete">已完成</string>
+    <string name="todo_title_hint">输入待办名称</string>
+    <string name="todo_content_hint">输入待办详情(非必填)</string>
 </resources>

@@ -15,7 +15,7 @@ data class TodoBean(
         @SerializedName("data") var data: Data = Data(),
         @SerializedName("errorCode") var errorCode: Int = 0,
         @SerializedName("errorMsg") var errorMsg: String = ""
-) {
+) : Serializable {
 
     data class Data(
             @SerializedName("curPage") var curPage: Int = 0,
@@ -25,7 +25,7 @@ data class TodoBean(
             @SerializedName("pageCount") var pageCount: Int = 0,
             @SerializedName("size") var size: Int = 0,
             @SerializedName("total") var total: Int = 0
-    ) {
+    ) : Serializable {
 
         class TodoItem : SectionEntity<TodoItem>, Serializable {
             @SerializedName("completeDate")
