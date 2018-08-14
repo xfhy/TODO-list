@@ -4,20 +4,26 @@
 
     <item
         android:id="@+id/action_todo"
-        android:icon="@mipmap/icon_todo"
+        android:icon="@drawable/icon_todo"
         android:title="@string/TODO"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_complete"
+        android:icon="@drawable/icon_complete"
+        android:title="@string/tomato"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/action_tomato"
-        android:icon="@mipmap/icon_tomato"
+        android:icon="@drawable/icon_tomato"
         android:title="@string/tomato"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/action_me"
-        android:icon="@mipmap/icon_me"
+        android:icon="@drawable/icon_me"
         android:title="@string/about_me"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"/>
 
 </menu>

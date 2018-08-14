@@ -10,6 +10,7 @@ import android.view.MenuItem
 import com.xfhy.library.basekit.activity.BaseActivity
 import com.xfhy.library.common.AppManager
 import com.xfhy.todo.R
+import com.xfhy.todo.fragment.CompleteFragment
 import com.xfhy.todo.fragment.MeFragment
 import com.xfhy.todo.fragment.TodoFragment
 import com.xfhy.todo.fragment.TomatoFragment
@@ -54,6 +55,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
      */
     private var lastClickTime = 0L
     private val mTodoFragment: TodoFragment by lazy { TodoFragment.newInstance() }
+    private val mCompleteFragment: CompleteFragment by lazy { CompleteFragment.newInstance() }
     private val mTomatoFragment: TomatoFragment by lazy { TomatoFragment.newInstance() }
     private val mMeFragment: MeFragment by lazy { MeFragment.newInstance() }
 
@@ -78,6 +80,11 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
                 addFragment(supportFragmentManager, mTodoFragment, "TodoFragment")
                 showFragment(supportFragmentManager, mTodoFragment)
             }
+            R.id.action_complete -> {
+                toast("已完成")
+                addFragment(supportFragmentManager, mCompleteFragment, "CompleteFragment")
+                showFragment(supportFragmentManager, mCompleteFragment)
+            }
             R.id.action_tomato -> {
                 toast("番茄")
                 addFragment(supportFragmentManager, mTomatoFragment, "TomatoFragment")
@@ -98,6 +105,9 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         val fragmentTransaction = fragmentManager.beginTransaction()
         if (!mTodoFragment.isHidden) {
             fragmentTransaction.hide(mTodoFragment)
+        }
+        if (!mCompleteFragment.isHidden) {
+            fragmentTransaction.hide(mCompleteFragment)
         }
         if (!mTomatoFragment.isHidden) {
             fragmentTransaction.hide(mTomatoFragment)

@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/dimen_20"
-        android:src="@mipmap/icon_add"
+        android:src="@drawable/icon_add"
         app:backgroundTint="@color/colorAccent"
         app:borderWidth="0dp"
         app:elevation="@dimen/dimen_4"
