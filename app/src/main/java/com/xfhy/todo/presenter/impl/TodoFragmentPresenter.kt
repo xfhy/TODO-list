@@ -54,8 +54,8 @@ class TodoFragmentPresenter(private val mView: TodoFragmentContract.View) : RxPr
 
     override fun markTodoStatus(id: Int, status: Int) {
         addSubscribe(TodoDataManager.markTodoStatus(id, status).compose(SchedulerUtils.ioToMain())
-                .subscribeWith(object : CommonSubscriber<BaseResp<String>>(mView, "标记失败") {
-                    override fun onNext(t: BaseResp<String>?) {
+                .subscribeWith(object : CommonSubscriber<BaseResp<Any>>(mView, "标记失败") {
+                    override fun onNext(t: BaseResp<Any>?) {
                         super.onNext(t)
                         if (t?.errorCode == 0) {
                             mView.showTips("已完成")
@@ -66,8 +66,8 @@ class TodoFragmentPresenter(private val mView: TodoFragmentContract.View) : RxPr
 
     override fun deleteTodoById(id: Int) {
         addSubscribe(TodoDataManager.deleteTodoById(id).compose(SchedulerUtils.ioToMain())
-                .subscribeWith(object : CommonSubscriber<BaseResp<String>>(mView, "删除失败") {
-                    override fun onNext(t: BaseResp<String>?) {
+                .subscribeWith(object : CommonSubscriber<BaseResp<Any>>(mView, "删除失败") {
+                    override fun onNext(t: BaseResp<Any>?) {
                         super.onNext(t)
                         if (t?.errorCode == 0) {
                             mView.showTips("已删除")

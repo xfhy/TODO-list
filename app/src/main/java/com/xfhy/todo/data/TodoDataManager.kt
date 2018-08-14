@@ -57,14 +57,14 @@ object TodoDataManager {
      * 标记某个todo 已完成
      * @param status 0:完成  1:未完成
      */
-    fun markTodoStatus(id: Int, status: Int): Flowable<BaseResp<String>> {
+    fun markTodoStatus(id: Int, status: Int): Flowable<BaseResp<Any>> {
         return todoService.markTodoStatus(id, status)
     }
 
     /**
      * 删除某个todo
      */
-    fun deleteTodoById(id: Int): Flowable<BaseResp<String>> {
+    fun deleteTodoById(id: Int): Flowable<BaseResp<Any>> {
         return todoService.deleteTodoById(id)
     }
 
@@ -76,7 +76,7 @@ object TodoDataManager {
      */
     fun updateTodoById(id: Int, title: String, content: String,
                        date: String = DateUtils.getDateFormatText(System.currentTimeMillis(), "yyyy-MM-dd"),
-                       status: Int = 0, type: Int = 0): Flowable<BaseResp<String>> {
+                       status: Int = 0, type: Int = 0): Flowable<BaseResp<Any>> {
         return todoService.updateTodoById(id, title, content, date, status, type)
     }
 
@@ -87,7 +87,7 @@ object TodoDataManager {
      */
     fun addTodoById(title: String, content: String,
                     date: String = DateUtils.getDateFormatText(System.currentTimeMillis(), "yyyy-MM-dd"),
-                    type: Int = 0): Flowable<BaseResp<String>> {
+                    type: Int = 0): Flowable<BaseResp<Any>> {
         return todoService.addTodoById(title, content, date, type)
     }
 

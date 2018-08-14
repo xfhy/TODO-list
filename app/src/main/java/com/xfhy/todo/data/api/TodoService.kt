@@ -54,7 +54,7 @@ interface TodoService {
      * */
     @FormUrlEncoded
     @POST("lg/todo/done/{id}/json")
-    fun markTodoStatus(@Path("id") id: Int, @Field("status") status: Int): Flowable<BaseResp<String>>
+    fun markTodoStatus(@Path("id") id: Int, @Field("status") status: Int): Flowable<BaseResp<Any>>
 
     /**
      * 删除一条Todo
@@ -65,7 +65,7 @@ interface TodoService {
     id: 拼接在链接上，为唯一标识
      * */
     @POST("lg/todo/delete/{id}/json")
-    fun deleteTodoById(@Path("id") id: Int): Flowable<BaseResp<String>>
+    fun deleteTodoById(@Path("id") id: Int): Flowable<BaseResp<Any>>
 
     /**
      * 更新一条Todo内容
@@ -84,7 +84,7 @@ interface TodoService {
     @POST("lg/todo/update/{id}/json")
     fun updateTodoById(@Path("id") id: Int, @Field("title") title: String, @Field("content") content: String,
                        @Field("date") date: String = DateUtils.getDateFormatText(System.currentTimeMillis(), "yyyy-MM-dd"),
-                       @Field("status") status: Int = 0, @Field("type") type: Int = 0): Flowable<BaseResp<String>>
+                       @Field("status") status: Int = 0, @Field("type") type: Int = 0): Flowable<BaseResp<Any>>
 
     /**
      *  新增一条Todo
@@ -101,6 +101,6 @@ interface TodoService {
     @POST("lg/todo/add/json")
     fun addTodoById(@Field("title") title: String, @Field("content") content: String,
                     @Field("date") date: String = DateUtils.getDateFormatText(System.currentTimeMillis(), "yyyy-MM-dd"),
-                    @Field("type") type: Int = 0): Flowable<BaseResp<String>>
+                    @Field("type") type: Int = 0): Flowable<BaseResp<Any>>
 
 }
