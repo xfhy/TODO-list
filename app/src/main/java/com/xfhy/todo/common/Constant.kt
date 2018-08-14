@@ -15,8 +15,8 @@ object Constant {
     /**
      * 是否完成
      */
-    const val DONE_STATES = 0
-    const val UNDONE_STATES = 1
+    const val DONE_STATES = 1
+    const val UNDONE_STATES = 0
 
     /**
      * todo 类型

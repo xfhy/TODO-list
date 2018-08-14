@@ -74,7 +74,7 @@ object TodoDataManager {
      */
     fun updateTodoById(id: Int, title: String, content: String,
                        date: String = DateUtils.getDateFormatText(System.currentTimeMillis(), "yyyy-MM-dd"),
-                       status: Int = 0, type: Int = Constant.TODO_TYPE): Flowable<BaseResp<Any>> {
+                       status: Int = Constant.UNDONE_STATES, type: Int = Constant.TODO_TYPE): Flowable<BaseResp<Any>> {
         return todoService.updateTodoById(id, title, content, date, status, type)
     }
 

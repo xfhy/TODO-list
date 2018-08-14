@@ -107,7 +107,6 @@ class TodoFragmentPresenter(private val mView: TodoFragmentContract.View) : RxPr
     override fun onRefresh() {
         mUndonePage = 1
         //分页
-        mView.showLoading()
         addSubscribe(TodoDataManager.getUndoneTodoList(Constant.TODO_TYPE, mUndonePage).compose(SchedulerUtils.ioToMain())
                 .subscribeWith(object : CommonSubscriber<TodoBean>(mView, "获取TODO失败") {
                     override fun onNext(t: TodoBean?) {

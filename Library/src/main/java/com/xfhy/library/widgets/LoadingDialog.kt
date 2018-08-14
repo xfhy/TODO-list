@@ -47,8 +47,8 @@ class LoadingDialog private constructor(context: Context, theme: Int) : Dialog(c
      * 隐藏对话框
      */
     override fun hide() {
-        mDialog.dismiss()
         loadingViewDrawable?.stop()
+        mDialog.dismiss()
     }
 
 }

@@ -35,7 +35,9 @@ abstract class BaseMvpFragment<T : BasePresenter> : BaseFragment(), BaseView {
     }
 
     override fun hideLoading() {
-        mDialog?.hide()
+        if(mDialog?.isShowing != false){
+            mDialog?.hide()
+        }
     }
 
     override fun showErrorMsg(errorMsg: String) {

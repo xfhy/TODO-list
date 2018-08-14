@@ -58,6 +58,7 @@ abstract class BaseMvpActivity<P : BasePresenter> : BaseActivity(), BaseView {
 
     override fun onDestroy() {
         super.onDestroy()
+        hideLoading()
         mPresenter?.onDestroy()
     }
 
