@@ -25,11 +25,7 @@ open class BaseViewHolder//初始化ViewHolder
         private val mView: View) : RecyclerView.ViewHolder(mView) {
 
     //子布局中的控件
-    private val mItemViews: SparseArray<View>
-
-    init {
-        mItemViews = SparseArray()
-    }
+    private val mItemViews: SparseArray<View> = SparseArray()
 
     /**
      * 获取子控件

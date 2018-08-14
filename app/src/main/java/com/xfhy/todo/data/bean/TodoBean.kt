@@ -6,7 +6,7 @@ import java.io.Serializable
 
 /**
  * Created by feiyang on 2018/8/13 11:44
- * Description :
+ * Description : tudo列表的bean
  */
 
 data class TodoBean(

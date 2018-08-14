@@ -61,23 +61,23 @@ object SnackbarUtil {
     /**
      * 信息类型的背景颜色
      */
-    const val BLUE = -0xde6a0d
+    private const val BLUE = -0xde6a0d
     /**
      * 确认信息类型背景颜色
      */
-    const val GREEN = -0xb350b0
+    private const val GREEN = -0xb350b0
     /**
      * 警告类型背景颜色
      */
-    const val ORANGE = -0x3ef9
+    private const val ORANGE = -0x3ef9
     /**
      * 错误类型背景颜色
      */
-    const val RED = -0xbbcca
+    private const val RED = -0xbbcca
     /**
      * action文本颜色  白色
      */
-    const val WHITE = -0x1
+    private const val WHITE = -0x1
 
     /**
      * 消息类型   替代Java中的枚举类型

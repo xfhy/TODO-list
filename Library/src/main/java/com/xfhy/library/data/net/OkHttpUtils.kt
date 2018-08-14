@@ -97,6 +97,7 @@ object OkHttpUtils {
                         //HashMap 存值  将url的host存起来  domain是域名   host是主机
                         cookieStore[url.host()] = cookies
 
+                        //将cookie序列化到SP中  避免下次进入APP时cookie没有了之前的cookie
                         SPUtils.putValue(url.host(), gson.toJson(cookieStore))
                     }
 

@@ -46,5 +46,7 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
 
     }
 
-
+    override fun showTips(tips: String) {
+        SnackbarUtil.showBarShortTime(fab_add_todo, tips, SnackbarUtil.INFO)
+    }
 }
