@@ -7,8 +7,19 @@ package com.xfhy.todo.common
 object Constant {
     const val USERNAME = "username"
     const val PASSWORD = "password"
+    /**
+     * 是否已登录
+     */
     const val IS_LOGIN = "is_login"
+
+    /**
+     * 是否完成
+     */
     const val DONE_STATES = 0
     const val UNDONE_STATES = 1
 
+    /**
+     * todo 类型
+     */
+    const val TODO_TYPE = 0
 }

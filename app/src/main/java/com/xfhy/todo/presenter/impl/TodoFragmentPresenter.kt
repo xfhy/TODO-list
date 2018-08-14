@@ -4,6 +4,7 @@ import com.xfhy.library.basekit.presenter.RxPresenter
 import com.xfhy.library.data.bean.BaseResp
 import com.xfhy.library.rx.CommonSubscriber
 import com.xfhy.library.rx.scheduler.SchedulerUtils
+import com.xfhy.todo.common.Constant
 import com.xfhy.todo.data.TodoDataManager
 import com.xfhy.todo.data.bean.TodoBean
 import com.xfhy.todo.presenter.TodoFragmentContract
@@ -15,17 +16,12 @@ import io.reactivex.Flowable
  */
 class TodoFragmentPresenter(private val mView: TodoFragmentContract.View) : RxPresenter(), TodoFragmentContract.Presenter {
 
-    companion object {
-        //类别
-        const val ZERO = 0
-    }
-
     var mUndonePage = 1
 
     override fun getUndoneTodoList() {
         //分页
         mView.showLoading()
-        addSubscribe(TodoDataManager.getUndoneTodoList(ZERO, mUndonePage).compose(SchedulerUtils.ioToMain())
+        addSubscribe(TodoDataManager.getUndoneTodoList(Constant.TODO_TYPE, mUndonePage).compose(SchedulerUtils.ioToMain())
                 .subscribeWith(object : CommonSubscriber<TodoBean>(mView, "获取TODO失败") {
                     override fun onNext(t: TodoBean?) {
                         super.onNext(t)
@@ -82,7 +78,7 @@ class TodoFragmentPresenter(private val mView: TodoFragmentContract.View) : RxPr
      */
     override fun loadMoreData(lastDateL: Long) {
         mUndonePage++
-        addSubscribe(TodoDataManager.getUndoneTodoList(ZERO, mUndonePage).compose(SchedulerUtils.ioToMain())
+        addSubscribe(TodoDataManager.getUndoneTodoList(Constant.TODO_TYPE, mUndonePage).compose(SchedulerUtils.ioToMain())
                 .subscribeWith(object : CommonSubscriber<TodoBean>(mView, "获取TODO失败") {
                     override fun onNext(t: TodoBean?) {
                         super.onNext(t)
@@ -112,7 +108,7 @@ class TodoFragmentPresenter(private val mView: TodoFragmentContract.View) : RxPr
         mUndonePage = 1
         //分页
         mView.showLoading()
-        addSubscribe(TodoDataManager.getUndoneTodoList(ZERO, mUndonePage).compose(SchedulerUtils.ioToMain())
+        addSubscribe(TodoDataManager.getUndoneTodoList(Constant.TODO_TYPE, mUndonePage).compose(SchedulerUtils.ioToMain())
                 .subscribeWith(object : CommonSubscriber<TodoBean>(mView, "获取TODO失败") {
                     override fun onNext(t: TodoBean?) {
                         super.onNext(t)

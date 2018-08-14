@@ -4,6 +4,7 @@ import com.xfhy.library.data.bean.BaseResp
 import com.xfhy.library.data.net.RetrofitFactory
 import com.xfhy.library.utils.DateUtils
 import com.xfhy.todo.BuildConfig
+import com.xfhy.todo.common.Constant
 import com.xfhy.todo.data.api.LoginService
 import com.xfhy.todo.data.api.TodoService
 import com.xfhy.todo.data.bean.LoginBean
@@ -13,7 +14,7 @@ import io.reactivex.Flowable
 
 /**
  * Created by feiyang on 2018/8/10 12:12
- * Description :
+ * Description : 数据获取
  */
 object TodoDataManager {
     private val mRetrofitFactory: RetrofitFactory by lazy { RetrofitFactory.instance }
@@ -37,19 +38,17 @@ object TodoDataManager {
 
     /**
      * 获取未完成列表
-     * @param type 0,1,2,3
      * @param page 从1开始
      */
-    fun getUndoneTodoList(type: Int, page: Int): Flowable<TodoBean> {
+    fun getUndoneTodoList(type: Int = Constant.TODO_TYPE, page: Int): Flowable<TodoBean> {
         return todoService.getUndoneTodoList(type, page)
     }
 
     /**
      * 获取已完成列表
-     * @param type 0,1,2,3
      * @param page 从1开始
      */
-    fun getDoneTodoList(type: Int, page: Int): Flowable<TodoBean> {
+    fun getDoneTodoList(type: Int = Constant.TODO_TYPE, page: Int): Flowable<TodoBean> {
         return todoService.getDoneTodoList(type, page)
     }
 
@@ -72,22 +71,20 @@ object TodoDataManager {
      * 更新todo内容
      * @param date yyyy-MM-dd
      * @param status 0:完成  1:未完成
-     * @param type 0,1,2,3
      */
     fun updateTodoById(id: Int, title: String, content: String,
                        date: String = DateUtils.getDateFormatText(System.currentTimeMillis(), "yyyy-MM-dd"),
-                       status: Int = 0, type: Int = 0): Flowable<BaseResp<Any>> {
+                       status: Int = 0, type: Int = Constant.TODO_TYPE): Flowable<BaseResp<Any>> {
         return todoService.updateTodoById(id, title, content, date, status, type)
     }
 
     /**
      * 添加todo
      * @param date yyyy-MM-dd
-     * @param type 0,1,2,3
      */
     fun addTodoById(title: String, content: String,
                     date: String = DateUtils.getDateFormatText(System.currentTimeMillis(), "yyyy-MM-dd"),
-                    type: Int = 0): Flowable<BaseResp<Any>> {
+                    type: Int = Constant.TODO_TYPE): Flowable<BaseResp<Any>> {
         return todoService.addTodoById(title, content, date, type)
     }
 
