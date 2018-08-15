@@ -53,8 +53,6 @@ dependencies {
     api rootProject.ext.rxlifecycle_components
     //logger
     api rootProject.ext.logger
-    //RxPermissions
-    api rootProject.ext.rxpermissions
     //CardView
     api rootProject.ext.cardview
     //RecyclerView
