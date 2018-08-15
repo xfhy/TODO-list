@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.xfhy.library.basekit.activity.TitleBarActivity
 import com.xfhy.todo.R
 import com.xfhy.todo.fragment.LoginFragment
+import com.xfhy.todo.fragment.TomatoFragment
 
 private const val LOGIN_TAG = "login_tag"
 
@@ -25,7 +26,8 @@ class LoginActivity : TitleBarActivity() {
 
     private fun initView() {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.fl_login_root_view, LoginFragment.newInstance(), LOGIN_TAG)
+//        transaction.add(R.id.fl_login_root_view, LoginFragment.newInstance(), LOGIN_TAG)
+        transaction.add(R.id.fl_login_root_view, TomatoFragment.newInstance(), LOGIN_TAG)
         transaction.commit()
     }
 

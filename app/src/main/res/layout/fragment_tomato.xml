@@ -1,17 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <include layout="@layout/layout_appbar"/>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="番茄"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="25:00"
+            android:textColor="@color/colorPrimary"
+            android:textSize="50dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_cdcdcd"
+            android:textSize="@dimen/font_size_14"
+            tools:text="下午好,准备好开始专注了吗?"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_tomato_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+        <LinearLayout
+            android:id="@+id/ll_tomato_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_20"
+            android:layout_toStartOf="@+id/space"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_tomato_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/font_size_26"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="番茄数"
+                android:textColor="@color/gray_cdcdcd"
+                android:textSize="@dimen/font_size_14"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_focus_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:layout_toEndOf="@+id/space"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_focus_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0h"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/font_size_26"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="专注时长"
+                android:textColor="@color/gray_cdcdcd"
+                android:textSize="@dimen/font_size_14"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_start_focus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dimen_50"
+        android:background="@drawable/shape_solid_start_focus"
+        android:paddingBottom="@dimen/dimen_10"
+        android:paddingEnd="@dimen/dimen_25"
+        android:paddingStart="@dimen/dimen_25"
+        android:paddingTop="@dimen/dimen_10"
+        android:text="开始专注"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/font_size_18"/>
+
+</RelativeLayout>

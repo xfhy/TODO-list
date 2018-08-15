@@ -34,6 +34,7 @@
     <dimen name="font_size_22">22sp</dimen>
     <dimen name="font_size_24">24sp</dimen>
     <dimen name="font_size_26">26sp</dimen>
+    <dimen name="font_size_40">40sp</dimen>
 
 
     <dimen name="dimen_1">1dp</dimen>

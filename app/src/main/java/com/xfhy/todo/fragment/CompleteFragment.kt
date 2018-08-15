@@ -20,6 +20,7 @@ import com.xfhy.todo.presenter.TodoFragmentContract
 import com.xfhy.todo.presenter.impl.CompleteFragmentPresenter
 import com.xfhy.todo.presenter.impl.TodoFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_todo_list.*
+import kotlinx.android.synthetic.main.layout_appbar.*
 
 /**
  * Created by feiyang on 2018/8/13 11:41
