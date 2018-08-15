@@ -17,7 +17,7 @@ interface CompleteFragmentContract {
         fun getDoneTodoList()
 
         /**
-         * 标记某个todo 已完成
+         * 标记某个todo 未完成
          * @param status 0:完成  1:未完成
          */
         fun markTodoStatus(id: Int, status: Int)
@@ -30,20 +30,16 @@ interface CompleteFragmentContract {
         /**
          * 加载更多数据
          */
-        fun loadMoreData()
+        fun loadMoreData(lastDateL: Long)
+
+        /**
+         * 刷新
+         */
+        fun onRefresh()
 
     }
 
-    interface View : BaseView {
-        /**
-         * 展示todo 列表
-         */
-        fun showTodoList(todoData: TodoBean.Data)
-
-        /**
-         * 展示一个小提示消息
-         */
-        fun showTips(tips: String)
+    interface View : TodoFragmentContract.View {
     }
 
 }

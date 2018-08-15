@@ -4,11 +4,10 @@ import com.xfhy.library.basekit.presenter.RxPresenter
 import com.xfhy.library.data.bean.BaseResp
 import com.xfhy.library.rx.CommonSubscriber
 import com.xfhy.library.rx.scheduler.SchedulerUtils
+import com.xfhy.todo.common.Constant
 import com.xfhy.todo.data.TodoDataManager
 import com.xfhy.todo.data.bean.TodoBean
 import com.xfhy.todo.presenter.CompleteFragmentContract
-import com.xfhy.todo.presenter.TodoFragmentContract
-import io.reactivex.Flowable
 
 /**
  * Created by feiyang on 2018年8月13日11:52:46
@@ -16,25 +15,36 @@ import io.reactivex.Flowable
  */
 class CompleteFragmentPresenter(private val mView: CompleteFragmentContract.View) : RxPresenter(), CompleteFragmentContract.Presenter {
 
-    companion object {
-        //类别
-        const val ZERO = 0
-    }
-
-    var mUndonePage = 1
+    private var mDonePage = 1
 
     override fun getDoneTodoList() {
         //分页
         mView.showLoading()
-        addSubscribe(TodoDataManager.getDoneTodoList(ZERO, mUndonePage).compose(SchedulerUtils.ioToMain())
+        addSubscribe(TodoDataManager.getDoneTodoList(Constant.TODO_TYPE, mDonePage).compose(SchedulerUtils.ioToMain())
                 .subscribeWith(object : CommonSubscriber<TodoBean>(mView, "获取TODO失败") {
                     override fun onNext(t: TodoBean?) {
                         super.onNext(t)
                         if (t?.errorCode == 0) {
-                            mView.showTodoList(t.data)
+                            //临时记录数据
+                            val resultList = mutableListOf<TodoBean.Data.TodoItem>()
+                            var lastDate = 0L
+                            //将header组装起来
+                            for (todo in t.data.todoList) {
+                                if (lastDate == todo.date) {
+                                    resultList.add(todo)
+                                } else {
+                                    resultList.add(TodoBean.Data.TodoItem(true, todo.dateStr))
+                                    resultList.add(todo)
+                                    lastDate = todo.date
+                                }
+                            }
+                            mView.showTodoList(resultList)
+                        } else {
+                            mView.showEmptyView()
                         }
                     }
                 }))
+
     }
 
     override fun markTodoStatus(id: Int, status: Int) {
@@ -61,8 +71,62 @@ class CompleteFragmentPresenter(private val mView: CompleteFragmentContract.View
                 }))
     }
 
-    override fun loadMoreData() {
-        mUndonePage++
-        getDoneTodoList()
+    /**
+     * 加载更多数据
+     * @param lastDateL 上一次最后的那个时间节点
+     */
+    override fun loadMoreData(lastDateL: Long) {
+        mDonePage++
+        addSubscribe(TodoDataManager.getUndoneTodoList(Constant.TODO_TYPE, mDonePage).compose(SchedulerUtils.ioToMain())
+                .subscribeWith(object : CommonSubscriber<TodoBean>(mView, "获取TODO失败") {
+                    override fun onNext(t: TodoBean?) {
+                        super.onNext(t)
+                        if (t?.errorCode == 0) {
+                            //临时记录数据
+                            val resultList = mutableListOf<TodoBean.Data.TodoItem>()
+                            var lastDate = lastDateL
+                            //将header组装起来
+                            for (todo in t.data.todoList) {
+                                if (lastDate == todo.date) {
+                                    resultList.add(todo)
+                                } else {
+                                    resultList.add(TodoBean.Data.TodoItem(true, todo.dateStr))
+                                    resultList.add(todo)
+                                    lastDate = todo.date
+                                }
+                            }
+                            mView.loadMoreSuccess(resultList)
+                        } else {
+                            mView.loadMoreFailed()
+                        }
+                    }
+                }))
+    }
+
+    override fun onRefresh() {
+        mDonePage = 1
+        //分页
+        addSubscribe(TodoDataManager.getDoneTodoList(Constant.TODO_TYPE, mDonePage).compose(SchedulerUtils.ioToMain())
+                .subscribeWith(object : CommonSubscriber<TodoBean>(mView, "获取TODO失败") {
+                    override fun onNext(t: TodoBean?) {
+                        super.onNext(t)
+                        if (t?.errorCode == 0) {
+                            val resultList = mutableListOf<TodoBean.Data.TodoItem>()
+                            var lastDate = 0L
+                            for (todo in t.data.todoList) {
+                                if (lastDate == todo.date) {
+                                    resultList.add(todo)
+                                } else {
+                                    resultList.add(TodoBean.Data.TodoItem(true, todo.dateStr))
+                                    resultList.add(todo)
+                                    lastDate = todo.date
+                                }
+                            }
+                            mView.onRefresh(resultList)
+                        } else {
+                            mView.showEmptyView()
+                        }
+                    }
+                }))
     }
 }

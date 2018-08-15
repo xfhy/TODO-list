@@ -61,7 +61,7 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
         mRefreshLayout.setColorSchemeResources(R.color.colorPrimary)
 
         //adapter
-        mTodoAdapter = TodoAdapter(null)
+        mTodoAdapter = TodoAdapter(null,false)
         mTodoAdapter?.openLoadAnimation()
         mTodoAdapter?.isFirstOnly(false)
         mTodoAdapter?.setEnableLoadMore(true)
@@ -111,7 +111,7 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
         SnackbarUtil.showBarShortTime(fab_add_todo, tips, SnackbarUtil.INFO)
     }
 
-    override fun onItemClick(adapter: BaseQuickAdapter<TodoBean.Data.TodoItem, BaseViewHolder>, view: View, position: Int) {
+       override fun onItemClick(adapter: BaseQuickAdapter<TodoBean.Data.TodoItem, BaseViewHolder>, view: View, position: Int) {
         //这里还需要记录传过去的position  用于待会儿更改这边的数据
         mEditPosition = position
         EditTodoActivity.enterEditTodoActivity(this, adapter.getItem(position), EDIT_REQUEST_CODE)

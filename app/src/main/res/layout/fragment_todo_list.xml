@@ -31,19 +31,11 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize">
 
-        <!--通用的带刷新的列表布局  -->
-
-        <com.xfhy.library.widgets.StatefulLayout
-            android:id="@+id/sfl_state_view"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/mRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_todo"/>
-        </com.xfhy.library.widgets.StatefulLayout>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_todo"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 

@@ -76,22 +76,18 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         hideAllFragment(supportFragmentManager)
         when (item.itemId) {
             R.id.action_todo -> {
-                toast("清单")
                 addFragment(supportFragmentManager, mTodoFragment, "TodoFragment")
                 showFragment(supportFragmentManager, mTodoFragment)
             }
             R.id.action_complete -> {
-                toast("已完成")
                 addFragment(supportFragmentManager, mCompleteFragment, "CompleteFragment")
                 showFragment(supportFragmentManager, mCompleteFragment)
             }
             R.id.action_tomato -> {
-                toast("番茄")
                 addFragment(supportFragmentManager, mTomatoFragment, "TomatoFragment")
                 showFragment(supportFragmentManager, mTomatoFragment)
             }
             R.id.action_me -> {
-                toast("我的")
                 addFragment(supportFragmentManager, mMeFragment, "MeFragment")
                 showFragment(supportFragmentManager, mMeFragment)
             }
