@@ -34,6 +34,7 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
         }
 
         const val EDIT_REQUEST_CODE = 1003
+        const val ADD_REQUEST_CODE = 1004
     }
 
     private var mTodoAdapter: TodoAdapter? = null
@@ -75,7 +76,7 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
 
         //添加按钮
         fab_add_todo.setOnClickListener {
-            SnackbarUtil.showBarShortTime(fab_add_todo, "添加", SnackbarUtil.INFO)
+            EditTodoActivity.enterAddTodoActivity(this, ADD_REQUEST_CODE)
         }
     }
 
@@ -173,24 +174,31 @@ class TodoFragment : BaseMvpFragment<TodoFragmentContract.Presenter>(), TodoFrag
         if (resultCode != Activity.RESULT_OK) {
             return
         }
-        if (requestCode == EDIT_REQUEST_CODE) {
-            //记录传回来的值  更改adapter中对应position的值
-            if (mEditPosition == -1) {
-                return
-            }
-            val adapterDataList = mTodoAdapter?.data
-            adapterDataList ?: return
-            data ?: return
-            if (mEditPosition < 0 || mEditPosition >= adapterDataList.size) {
-                return
-            }
+        when (requestCode) {
+            EDIT_REQUEST_CODE -> {
+                //记录传回来的值  更改adapter中对应position的值
+                if (mEditPosition == -1) {
+                    return
+                }
+                val adapterDataList = mTodoAdapter?.data
+                adapterDataList ?: return
+                data ?: return
+                if (mEditPosition < 0 || mEditPosition >= adapterDataList.size) {
+                    return
+                }
 
-            //找出更改过的item 更新RecyclerView
-            val bundle = data.extras
-            val todoItem = bundle.getSerializable(EditTodoActivity.EDIT_TODO_ITEM)
-            if (todoItem is TodoBean.Data.TodoItem) {
-                adapterDataList[mEditPosition] = todoItem
-                mTodoAdapter?.notifyItemChanged(mEditPosition)
+                //找出更改过的item 更新RecyclerView
+                val bundle = data.extras
+                val todoItem = bundle.getSerializable(EditTodoActivity.EDIT_TODO_ITEM)
+                if (todoItem is TodoBean.Data.TodoItem) {
+                    adapterDataList[mEditPosition] = todoItem
+                    mTodoAdapter?.notifyItemChanged(mEditPosition)
+                }
+            }
+            ADD_REQUEST_CODE -> {
+                onRefresh()
+            }
+            else -> {
             }
         }
     }

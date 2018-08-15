@@ -8,8 +8,6 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.View
-import android.widget.DatePicker
 import com.xfhy.library.basekit.activity.TitleBarMvpActivity
 import com.xfhy.library.utils.DateUtils
 import com.xfhy.todo.R
@@ -76,8 +74,8 @@ class EditTodoActivity : TitleBarMvpActivity<EditTodoPresenter>(), EditTodoContr
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_todo)
 
-        initView()
         initIntentData()
+        initView()
     }
 
     override fun initPresenter() {
@@ -85,18 +83,16 @@ class EditTodoActivity : TitleBarMvpActivity<EditTodoPresenter>(), EditTodoContr
     }
 
     private fun initIntentData() {
-        val funType = intent.getIntExtra(FUN_TYPE, FUN_TYPE_EDIT)
-        if (funType == FUN_TYPE_EDIT) {
+        mFunType = intent.getIntExtra(FUN_TYPE, FUN_TYPE_EDIT)
+        if (mFunType == FUN_TYPE_EDIT) {
             title = "清单详细"
             val bundle = intent.extras
             mTodoItemData = bundle.getSerializable(TODO_DATA) as? TodoBean.Data.TodoItem
             mTitleEt.setText(mTodoItemData?.title ?: "")
             mContentEt.setText(mTodoItemData?.content ?: "")
             mChooseTimeTv.text = mTodoItemData?.dateStr ?: ""
-        } else if (funType == FUN_TYPE_ADD) {
+        } else if (mFunType == FUN_TYPE_ADD) {
             title = "添加清单"
-            mFixedTitleTv.visibility = View.GONE
-            mFixedContentTv.visibility = View.GONE
         }
     }
 
@@ -127,7 +123,8 @@ class EditTodoActivity : TitleBarMvpActivity<EditTodoPresenter>(), EditTodoContr
             FUN_TYPE_EDIT -> {
                 //更新
                 mPresenter?.update(mTodoItemData?.id
-                        ?: 0, mTitleEt.text.toString().trim(), mContentEt.text.toString().trim(), mChooseTimeTv.text.toString(), Constant.UNDONE_STATES)
+                        ?: 0, mTitleEt.text.toString().trim(), mContentEt.text.toString().trim(), mChooseTimeTv.text.toString(),
+                        mTodoItemData?.status ?: Constant.UNDONE_STATES)
             }
             FUN_TYPE_ADD -> {
                 mPresenter?.addTodo(mTitleEt.text.toString().trim(), mContentEt.text.toString().trim(), mChooseTimeTv.text.toString())
@@ -162,28 +159,32 @@ class EditTodoActivity : TitleBarMvpActivity<EditTodoPresenter>(), EditTodoContr
         toast("请输入标题!!")
     }
 
-    override fun addSuccess() {
+    override fun addSuccess(data: TodoBean.Data.TodoItem?) {
+        if (mFunType == FUN_TYPE_ADD) {
+            //回传数据
+            val intent = Intent()
+            val bundle = Bundle()
+            data?.let {
+                bundle.putSerializable(EDIT_TODO_ITEM, data)
+                intent.putExtras(bundle)
+                setResult(Activity.RESULT_OK, intent)
+            }
+            finish()
+        }
     }
 
     override fun updateSuccess() {
-        when (mFunType) {
-            FUN_TYPE_EDIT -> {
-                //回传数据
-                mTodoItemData?.title = mTitleEt.text.toString().trim()
-                mTodoItemData?.content = mContentEt.text.toString().trim()
-                mTodoItemData?.dateStr = mChooseTimeTv.text.toString()
-                setResult(Activity.RESULT_OK)
-                val intent = Intent()
-                val bundle = Bundle()
-                bundle.putSerializable(EDIT_TODO_ITEM, mTodoItemData)
-                intent.putExtras(bundle)
-                setResult(Activity.RESULT_OK, intent)
-                finish()
-            }
-            FUN_TYPE_ADD -> {
-            }
-            else -> {
-            }
+        if (mFunType == FUN_TYPE_EDIT) {
+            //回传数据
+            mTodoItemData?.title = mTitleEt.text.toString().trim()
+            mTodoItemData?.content = mContentEt.text.toString().trim()
+            mTodoItemData?.dateStr = mChooseTimeTv.text.toString()
+            val intent = Intent()
+            val bundle = Bundle()
+            bundle.putSerializable(EDIT_TODO_ITEM, mTodoItemData)
+            intent.putExtras(bundle)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
         }
     }
 

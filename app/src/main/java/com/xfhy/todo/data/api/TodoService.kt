@@ -101,6 +101,6 @@ interface TodoService {
     @POST("lg/todo/add/json")
     fun addTodoById(@Field("title") title: String, @Field("content") content: String,
                     @Field("date") date: String = DateUtils.getDateFormatText(System.currentTimeMillis(), "yyyy-MM-dd"),
-                    @Field("type") type: Int = 0): Flowable<BaseResp<Any>>
+                    @Field("type") type: Int = 0): Flowable<BaseResp<TodoBean.Data.TodoItem>>
 
 }

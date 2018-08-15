@@ -84,7 +84,7 @@ object TodoDataManager {
      */
     fun addTodoById(title: String, content: String,
                     date: String = DateUtils.getDateFormatText(System.currentTimeMillis(), "yyyy-MM-dd"),
-                    type: Int = Constant.TODO_TYPE): Flowable<BaseResp<Any>> {
+                    type: Int = Constant.TODO_TYPE): Flowable<BaseResp<TodoBean.Data.TodoItem>> {
         return todoService.addTodoById(title, content, date, type)
     }
 
