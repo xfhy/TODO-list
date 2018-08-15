@@ -8,12 +8,19 @@
 
     <include layout="@layout/layout_appbar"/>
 
+    <com.xfhy.library.widgets.TomatoView
+        android:id="@+id/mTomatoView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_time"

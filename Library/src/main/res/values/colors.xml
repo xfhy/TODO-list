@@ -53,4 +53,6 @@
     <color name="color_header">#6F6F6F</color>
 
     <color name="comment_reply">#9ba4a3</color>
+    <color name="f0f0f0">#f0f0f0</color>
+    <color name="e6e6e6">#e6e6e6</color>
 </resources>

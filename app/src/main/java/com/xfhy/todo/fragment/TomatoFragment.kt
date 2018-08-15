@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.xfhy.library.basekit.fragment.BaseFragment
 import com.xfhy.todo.R
+import kotlinx.android.synthetic.main.fragment_tomato.*
 import kotlinx.android.synthetic.main.layout_appbar.*
 
 /**
@@ -27,6 +28,20 @@ class TomatoFragment : BaseFragment() {
 
     private fun initView() {
         mToolbar.title = "番茄计时"
+        var a = true
+        tv_start_focus.setOnClickListener {
+            if (a) {
+                mTomatoView.startFocus()
+            } else {
+                mTomatoView.stopFocus()
+            }
+            a = !a
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mTomatoView.stopFocus()
     }
 
 }
