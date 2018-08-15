@@ -75,7 +75,7 @@ class TomatoView @JvmOverloads constructor(context: Context, attr: AttributeSet?
     private var mListener: TomatoListener? = null
 
     init {
-        mOuterRingPaint.color = resources.getColor(R.color.e6e6e6)
+        mOuterRingPaint.color = resources.getColor(R.color.color_e6e6e6)
         mOuterRingPaint.strokeWidth = DensityUtil.dip2px(context, DEFAULT_OUTER_RING_WIDTH).toFloat()
         //空心
         mOuterRingPaint.style = Paint.Style.STROKE

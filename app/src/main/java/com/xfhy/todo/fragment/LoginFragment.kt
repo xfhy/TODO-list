@@ -52,8 +52,8 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
         if (!TextUtils.isEmpty(pwd)) {
             mPwdEt.setText(String(Base64Utils.decode(pwd)))
         }
-        mUserNameEt.setText("xxxxxxx415456465465")
-        mPwdEt.setText("xxxxxxx")
+        //mUserNameEt.setText("xxxxxxx415456465465")
+        //mPwdEt.setText("xxxxxxx")
 
         mLoginBtn.setOnClickListener(this)
         mNoAccountTv.setOnClickListener(this)
@@ -80,8 +80,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
                 }
             }
             R.id.mNoAccountTv -> {
-                loginSuccess()
-                /*if (mCurrentState == LOGIN) {
+                if (mCurrentState == LOGIN) {
                     mCurrentState = REGISTER
                     mNoAccountTv.text = "去登录"
                     mConfirmPwdEt.visibility = View.VISIBLE
@@ -91,7 +90,7 @@ class LoginFragment : BaseMvpFragment<LoginFragmentPresenter>(), LoginFragmentCo
                     mNoAccountTv.text = "没有账号?去注册"
                     mConfirmPwdEt.visibility = View.GONE
                     mLoginBtn.text = "登录"
-                }*/
+                }
             }
         }
     }

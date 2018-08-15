@@ -1,17 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="我的"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_margin="@dimen/common_padding_middle"
+        android:background="@color/color_ffffff"
+        app:cardCornerRadius="@dimen/dimen_2"
+        app:cardElevation="@dimen/dimen_2"
+        app:contentPadding="@dimen/dimen_3">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="@dimen/common_padding_middle"
+            android:text="作者: xfhy"
+            android:textColor="@color/color_1e1e1e"
+            android:textSize="@dimen/font_size_16"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_padding_middle"
+        android:background="@color/color_ffffff"
+        app:cardCornerRadius="@dimen/dimen_2"
+        app:cardElevation="@dimen/dimen_2"
+        app:contentPadding="@dimen/dimen_3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="email"
+            android:gravity="start"
+            android:padding="@dimen/common_padding_middle"
+            android:text="联系我: xfhy666@gmail.com"
+            android:textColor="@color/color_1e1e1e"
+            android:textSize="@dimen/font_size_16"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_padding_middle"
+        android:background="@color/color_ffffff"
+        app:cardCornerRadius="@dimen/dimen_2"
+        app:cardElevation="@dimen/dimen_2"
+        app:contentPadding="@dimen/dimen_3">
+
+        <TextView
+            android:id="@+id/mAccInfoTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="@dimen/common_padding_middle"
+            android:text="账号信息: xfhy666@gmail.com"
+            android:textColor="@color/color_1e1e1e"
+            android:textSize="@dimen/font_size_16"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_padding_middle"
+        android:background="@color/color_ffffff"
+        app:cardCornerRadius="@dimen/dimen_2"
+        app:cardElevation="@dimen/dimen_2"
+        app:contentPadding="@dimen/dimen_3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:gravity="start"
+            android:padding="@dimen/common_padding_middle"
+            android:text="项目地址: https://github.com/xfhy/TODO-list"
+            android:textColor="@color/color_1e1e1e"
+            android:textSize="@dimen/font_size_16"/>
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/mExitCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_padding_middle"
+        android:background="@color/color_ffffff"
+        app:cardCornerRadius="@dimen/dimen_2"
+        app:cardElevation="@dimen/dimen_2"
+        app:contentPadding="@dimen/dimen_3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/common_padding_middle"
+            android:text="退出登录"
+            android:textColor="@color/snackbar_red"
+            android:textSize="@dimen/font_size_16"/>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
