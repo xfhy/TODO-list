@@ -11,6 +11,7 @@ object Constant {
      * 是否已登录
      */
     const val IS_LOGIN = "is_login"
+    const val TOMATO_COUNT = "tomato_count"
 
     /**
      * 是否完成

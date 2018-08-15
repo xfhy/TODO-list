@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,36 +12,8 @@
         android:layout_height="300dp"
         android:layout_centerInParent="true"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="monospace"
-            android:text="25:00"
-            android:textColor="@color/colorPrimary"
-            android:textSize="50dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/tv_welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/gray_cdcdcd"
-            android:textSize="@dimen/font_size_14"
-            tools:text="下午好,准备好开始专注了吗?"/>
-
-    </LinearLayout>
-
     <RelativeLayout
-        android:id="@+id/rl_tomato_info"
+        android:id="@+id/mTomatoInfoRl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -70,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/font_size_26"
+                android:textSize="@dimen/font_size_40"
                 android:textStyle="bold"/>
 
             <TextView
@@ -97,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:text="0h"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/font_size_26"
+                android:textSize="@dimen/font_size_40"
                 android:textStyle="bold"/>
 
             <TextView
@@ -112,7 +82,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/tv_start_focus"
+        android:id="@+id/mStartFocusTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

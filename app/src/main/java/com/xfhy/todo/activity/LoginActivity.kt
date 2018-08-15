@@ -26,8 +26,7 @@ class LoginActivity : TitleBarActivity() {
 
     private fun initView() {
         val transaction = supportFragmentManager.beginTransaction()
-//        transaction.add(R.id.fl_login_root_view, LoginFragment.newInstance(), LOGIN_TAG)
-        transaction.add(R.id.fl_login_root_view, TomatoFragment.newInstance(), LOGIN_TAG)
+        transaction.add(R.id.fl_login_root_view, LoginFragment.newInstance(), LOGIN_TAG)
         transaction.commit()
     }
 

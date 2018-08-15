@@ -6,7 +6,6 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
-import com.orhanobut.logger.Logger
 import com.xfhy.library.R
 import com.xfhy.library.utils.DensityUtil
 import java.util.*
@@ -24,7 +23,7 @@ class TomatoView @JvmOverloads constructor(context: Context, attr: AttributeSet?
         private const val STATUS_START = 1005
         private const val STATUS_STOP = 1006
         private const val DEFAULT_OUTER_RING_WIDTH = 4f
-        private const val DEFAULT_ALL_TIME = 1500000L
+        const val DEFAULT_ALL_TIME = 1500000L
         /**
          * 倒计时速度 1秒
          */
@@ -73,6 +72,7 @@ class TomatoView @JvmOverloads constructor(context: Context, attr: AttributeSet?
      * 当前状态
      */
     private var mCurrentStatus = STATUS_STOP
+    private var mListener: TomatoListener? = null
 
     init {
         mOuterRingPaint.color = resources.getColor(R.color.e6e6e6)
@@ -212,6 +212,10 @@ class TomatoView @JvmOverloads constructor(context: Context, attr: AttributeSet?
                 handler.postDelayed(this, PASS_TIME_DELAY_MILLIS)
             } else {
                 mCurrentStatus = STATUS_STOP
+                if (mPastTime == mAllTime) {
+                    mPastTime = 0
+                    mListener?.onFinish()
+                }
             }
         }
     }
@@ -231,6 +235,17 @@ class TomatoView @JvmOverloads constructor(context: Context, attr: AttributeSet?
         mPastTime = 0
         mCurrentStatus = STATUS_STOP
         handler.removeCallbacksAndMessages(timeTask)
+    }
+
+    /**
+     * 设置监听器
+     */
+    fun setTomatoListener(listener: TomatoListener) {
+        mListener = listener
+    }
+
+    interface TomatoListener {
+        fun onFinish()
     }
 
 }
