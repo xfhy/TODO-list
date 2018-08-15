@@ -1,5 +1,9 @@
 package com.xfhy.todo.fragment
 
+import android.app.Notification
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import com.xfhy.library.basekit.fragment.BaseFragment
@@ -84,6 +88,25 @@ class TomatoFragment : BaseFragment(), View.OnClickListener, TomatoView.TomatoLi
         SPUtils.putValue(Constant.TOMATO_COUNT, tomatoCount)
         tv_tomato_count.text = "$tomatoCount"
         tv_focus_time.text = "${tomatoCount * TomatoView.DEFAULT_ALL_TIME / 3600000}"
+
+        //使用默认的声音  发送通知
+        val manager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notification = Notification.Builder(context, Constant.CHANNEL_ID)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setWhen(System.currentTimeMillis())
+                    .setContentTitle("已完成番茄")
+                    .setDefaults(Notification.DEFAULT_SOUND)
+                    .build()
+            manager?.notify(1, notification)
+        } else {
+            val notification = Notification.Builder(context)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setWhen(System.currentTimeMillis())
+                    .setContentTitle("已完成番茄")
+                    .setDefaults(Notification.DEFAULT_SOUND).build()
+            manager?.notify(1, notification)
+        }
     }
 
     override fun onDestroy() {

@@ -12,6 +12,7 @@ import com.xfhy.library.data.net.OkHttpUtils
 import android.app.NotificationManager
 import android.app.NotificationChannel
 import android.annotation.TargetApi
+import com.xfhy.todo.common.Constant
 
 /**
  * An [IntentService] subclass for handling asynchronous task requests in
@@ -26,7 +27,7 @@ class InitService : IntentService("InitService") {
         super.onCreate()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //通知渠道
-            val channel = NotificationChannel("start", "start",
+            val channel = NotificationChannel(Constant.CHANNEL_ID, "start",
                     NotificationManager.IMPORTANCE_HIGH)
 
             //创建渠道

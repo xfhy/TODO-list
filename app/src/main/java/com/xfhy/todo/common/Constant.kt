@@ -13,6 +13,8 @@ object Constant {
     const val IS_LOGIN = "is_login"
     const val TOMATO_COUNT = "tomato_count"
 
+    const val CHANNEL_ID = "start"
+
     /**
      * 是否完成
      */

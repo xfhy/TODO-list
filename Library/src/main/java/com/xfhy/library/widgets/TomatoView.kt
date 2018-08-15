@@ -23,7 +23,7 @@ class TomatoView @JvmOverloads constructor(context: Context, attr: AttributeSet?
         private const val STATUS_START = 1005
         private const val STATUS_STOP = 1006
         private const val DEFAULT_OUTER_RING_WIDTH = 4f
-        const val DEFAULT_ALL_TIME = 1500000L
+        const val DEFAULT_ALL_TIME = 3000L
         /**
          * 倒计时速度 1秒
          */
