@@ -109,9 +109,4 @@ class TomatoFragment : BaseFragment(), View.OnClickListener, TomatoView.TomatoLi
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mTomatoView.stopFocus()
-    }
-
 }

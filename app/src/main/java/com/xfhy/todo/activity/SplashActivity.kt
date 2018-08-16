@@ -24,16 +24,17 @@ class SplashActivity : BaseActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_splash)
 
-        mSplashAnimationView.addAnimatorListener(object:Animator.AnimatorListener{
+        mSplashAnimationView.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
-                if(SPUtils.getValue(Constant.IS_LOGIN,false)){
+                if (SPUtils.getValue(Constant.IS_LOGIN, false)) {
                     startActivity<MainActivity>()
                 } else {
                     startActivity<LoginActivity>()
                 }
+                finish()
             }
 
             override fun onAnimationCancel(animation: Animator?) {
