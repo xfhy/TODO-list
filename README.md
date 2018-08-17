@@ -6,6 +6,7 @@
 
 ## 亮点
 
+- MVP
 - Retrofit
 - RxAndroid
 - RxJava
@@ -26,6 +27,7 @@
 ![](/pic/pic1.png)
 ![](/pic/pic2.png)
 ![](/pic/pic3.png)
+![](/pic/pic8.png)
 ![](/pic/pic4.png)
 ![](/pic/pic5.png)
 ![](/pic/pic6.png)
