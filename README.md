@@ -4,6 +4,8 @@
 
 [下载体验](/pic/app-release.apk)
 
+![](http://olg7c0d2n.bkt.clouddn.com/18-8-28/11906890.jpg)
+
 ## 亮点
 
 - MVP
