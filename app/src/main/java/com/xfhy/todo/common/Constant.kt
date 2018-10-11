@@ -25,4 +25,7 @@ object Constant {
      * todo 类型
      */
     const val TODO_TYPE = 0
+
+    const val OFFLINE_ACTION = "com.xfhy.offline.action"
+
 }

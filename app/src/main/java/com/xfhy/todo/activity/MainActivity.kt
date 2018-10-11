@@ -1,5 +1,6 @@
 package com.xfhy.todo.activity
 
+import android.content.IntentFilter
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -10,6 +11,8 @@ import android.view.MenuItem
 import com.xfhy.library.basekit.activity.BaseActivity
 import com.xfhy.library.common.AppManager
 import com.xfhy.todo.R
+import com.xfhy.todo.broadcast.OfflineReceiver
+import com.xfhy.todo.common.Constant
 import com.xfhy.todo.fragment.CompleteFragment
 import com.xfhy.todo.fragment.MeFragment
 import com.xfhy.todo.fragment.TodoFragment
@@ -58,18 +61,26 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     private val mCompleteFragment: CompleteFragment by lazy { CompleteFragment.newInstance() }
     private val mTomatoFragment: TomatoFragment by lazy { TomatoFragment.newInstance() }
     private val mMeFragment: MeFragment by lazy { MeFragment.newInstance() }
+    private val mOfflineReceiver by lazy { OfflineReceiver() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initView()
+        initBroadcast()
     }
 
     private fun initView() {
         bnv_main_bottom_view.setOnNavigationItemSelectedListener(this)
 
         addFragment(supportFragmentManager, mTodoFragment, "TodoFragment")
+    }
+
+    private fun initBroadcast() {
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(Constant.OFFLINE_ACTION)
+        registerReceiver(mOfflineReceiver, intentFilter)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -139,6 +150,11 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
             return true
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(mOfflineReceiver)
     }
 
 }

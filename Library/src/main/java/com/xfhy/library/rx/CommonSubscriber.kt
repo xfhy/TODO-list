@@ -1,7 +1,9 @@
 package com.xfhy.library.rx
 
+import android.content.Intent
 import com.google.gson.JsonSyntaxException
 import com.xfhy.library.basekit.view.BaseView
+import com.xfhy.library.common.BaseApplication
 import com.xfhy.library.data.bean.BaseResp
 import io.reactivex.subscribers.ResourceSubscriber
 import retrofit2.HttpException
@@ -20,6 +22,9 @@ open class CommonSubscriber<T>(var view: BaseView?, private val mErrorMsg: Strin
         if (t is BaseResp<*>) {
             if (t.errorCode == -1001) {
                 //登录失效，需要重新登录
+                val intent = Intent()
+                intent.action = "com.xfhy.offline.action"
+                BaseApplication.context.sendBroadcast(intent)
             } else if (t.errorCode != 0) {
                 //其他错误
                 view?.showErrorMsg(t.errorMsg)
