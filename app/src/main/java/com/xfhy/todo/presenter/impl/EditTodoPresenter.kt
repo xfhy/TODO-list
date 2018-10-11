@@ -20,9 +20,7 @@ class EditTodoPresenter(val mView: EditTodoContract.View) : RxPresenter(), EditT
                 .subscribeWith(object : CommonSubscriber<BaseResp<TodoBean.Data.TodoItem>>(mView, "更新失败") {
                     override fun onNext(t: BaseResp<TodoBean.Data.TodoItem>?) {
                         super.onNext(t)
-                        if (t?.errorCode == 0) {
-                            mView.addSuccess(t.data)
-                        }
+                        mView.addSuccess(t?.data)
                     }
                 }))
     }
@@ -34,9 +32,7 @@ class EditTodoPresenter(val mView: EditTodoContract.View) : RxPresenter(), EditT
                 .subscribeWith(object : CommonSubscriber<BaseResp<Any>>(mView, "更新失败") {
                     override fun onNext(t: BaseResp<Any>?) {
                         super.onNext(t)
-                        if (t?.errorCode == 0) {
-                            mView.updateSuccess()
-                        }
+                        mView.updateSuccess()
                     }
                 }))
     }

@@ -2,6 +2,7 @@ package com.xfhy.library.rx
 
 import com.google.gson.JsonSyntaxException
 import com.xfhy.library.basekit.view.BaseView
+import com.xfhy.library.data.bean.BaseResp
 import io.reactivex.subscribers.ResourceSubscriber
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
@@ -15,6 +16,15 @@ open class CommonSubscriber<T>(var view: BaseView?, private val mErrorMsg: Strin
         ResourceSubscriber<T>() {
 
     override fun onNext(t: T?) {
+        //统一的外层  封装一下
+        if (t is BaseResp<*>) {
+            if (t.errorCode == -1001) {
+                //登录失效，需要重新登录
+            } else if (t.errorCode != 0) {
+                //其他错误
+                view?.showErrorMsg(t.errorMsg)
+            }
+        }
         view?.hideLoading()
     }
 

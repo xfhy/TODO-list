@@ -65,9 +65,7 @@ class TodoFragmentPresenter(private val mView: TodoFragmentContract.View) : RxPr
                 .subscribeWith(object : CommonSubscriber<BaseResp<Any>>(mView, "删除失败") {
                     override fun onNext(t: BaseResp<Any>?) {
                         super.onNext(t)
-                        if (t?.errorCode == 0) {
-                            mView.showTips("已删除")
-                        }
+                        mView.showTips("已删除")
                     }
                 }))
     }
