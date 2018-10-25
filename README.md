@@ -1,5 +1,10 @@
 # TODO-list
 
+![image](https://img.shields.io/badge/api-%2B19-blue.svg)
+![image](https://img.shields.io/badge/license-Apache2.0-blue.svg)
+[![image](https://img.shields.io/badge/author-xfhy-orange.svg)](https://github.com/xfhy)
+[![image](https://img.shields.io/badge/CSDN-潇风寒月-orange.svg)](https://blog.csdn.net/xfhy_)
+
 待办事项APP,纯kotlin开发,接口是鸿洋大大提供的,[地址](http://www.wanandroid.com/blog/show/2),并且我还加入了番茄时间,高效利用好时间.
 
 [下载体验](/pic/app-release.apk)
