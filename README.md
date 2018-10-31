@@ -31,11 +31,13 @@
 
 ![整体gif](/pic/all.gif)
 
-![](/pic/pic1.png)
-![](/pic/pic2.png)
-![](/pic/pic3.png)
-![](/pic/pic8.png)
-![](/pic/pic4.png)
-![](/pic/pic5.png)
-![](/pic/pic6.png)
-![](/pic/pic7.png)
+<p>
+<img src="/pic/pic1.png" width="225" height="400"/>
+<img src="/pic/pic2.png" width="225" height="400"/>
+<img src="/pic/pic3.png" width="225" height="400"/>
+<img src="/pic/pic4.png" width="225" height="400"/>
+<img src="/pic/pic5.png" width="225" height="400"/>
+<img src="/pic/pic6.png" width="225" height="400"/>
+<img src="/pic/pic7.png" width="225" height="400"/>
+<img src="/pic/pic8.png" width="225" height="400"/>
+</p>
